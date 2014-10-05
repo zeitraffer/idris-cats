@@ -5,7 +5,7 @@
 -- (equvivalent to presence of natural number object )
 --
 
-module NNO_Naive
+module Abstract.NNO_Naive
 
 {-
   Parts of the structure:
@@ -19,7 +19,7 @@ module NNO_Naive
 -}
 
 Graph : Type -> Type
-Graph t = (source, target: t) -> Type
+Graph type = (source, target: type) -> Type
 
 mutual
 

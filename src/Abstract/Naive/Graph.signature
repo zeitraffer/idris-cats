@@ -1,0 +1,37 @@
+module Graph
+
+--------------------------------------------
+
+infix ->>
+
+(->>) : Type -> Type -> Type
+node ->> edge = (source, target: node) -> edge
+
+class Pointed (t : Type) where
+  pointed : t
+
+--------------------------------------------
+
+structure Graph (obj : Type) where
+  Arrow : obj ->> Type
+
+--------------------------------------------
+
+record IsGraph : (obj : Type) -> Type where
+  recArrow : IsGraph obj -> (obj ->> Type)
+
+record RecGraph : Type where
+  recGraphObj : RecGraph -> Type
+  recIsGraph : RecGraph -> IsGraph recGraphObj
+
+class GraphClass (obj : Type) where
+  isGraph : IsGraph obj
+
+instance (Pointed (IsGraph obj)) => GraphClass obj where  
+
+arrow : (GraphClass obj) => obj -> Type
+
+--------------------------------------------
+
+
+
