@@ -4,7 +4,11 @@ import CategoryTheory.Concrete.Relation
 import CategoryTheory.Concrete.TypeAsRelation
 import CategoryTheory.Concrete.RelationAsRelation
 import CategoryTheory.Concrete.RelationMorphismAsRelation
-import CategoryTheory.Concrete.Monoid
-import CategoryTheory.Concrete.Poset
+import CategoryTheory.Concrete.RichRelation
+import CategoryTheory.Concrete.TypeAsRichRelation
+import CategoryTheory.Concrete.RelationAsRichRelation
+import CategoryTheory.Concrete.RichRelationAsRelation
 
---import CategoryTheory.Concrete.
+import CategoryTheory.Concrete.Monoid0
+import CategoryTheory.Concrete.TypeAsMonoid0
+

@@ -25,6 +25,7 @@ structure
 
 implicit Type : RichRelation Type
 implicit Relation : RichRelation Relation
+implicit RichRelation over : Relation over -> Relation 
 
 signature Monoid0
     (class carrier : Type)

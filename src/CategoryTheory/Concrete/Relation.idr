@@ -7,9 +7,12 @@ IsRelation obj = obj ->> Type
 
 record Relation : Type where
   MkRelation : 
-    (recRelObj: Type) ->
-    (recIsRel: IsRelation recRelObj) ->
+    (recObj: Type) ->
+    (recIsRel: IsRelation recObj) ->
     Relation
+
+instance ObClass Relation where
+  Ob = recObj
 
 class RelationClass (obj: Type) where
   (~>) : IsRelation obj

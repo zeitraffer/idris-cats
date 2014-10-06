@@ -4,20 +4,28 @@ import CategoryTheory.Concrete.Relation
 
 IsRelationMorphism : 
   (rSource, rTarget: Relation) -> 
-  ((recRelObj rSource) -> (recRelObj rTarget)) -> 
+  ( |rSource| -> |rTarget| ) -> 
   Type
 IsRelationMorphism rSource rTarget mor = 
-  (oSource, oTarget: recRelObj rSource) ->
+  (oSource, oTarget: |rSource| ) ->
   (recIsRel rSource oSource oTarget) ->
   (recIsRel rTarget (mor oSource) (mor oTarget))
 
 record RelationMorphism : (rSource, rTarget: Relation) -> Type where
   MkRelationMorphism : 
     {rSource, rTarget: Relation} ->
-    (recRelMorMap: (recRelObj rSource) -> (recRelObj rTarget)) ->
-    (recIsRelMor: IsRelationMorphism rSource rTarget recRelMorMap) ->
+    (recMap: |rSource| -> |rTarget| ) ->
+    (recIsRelMor: IsRelationMorphism rSource rTarget recMap) ->
     RelationMorphism rSource rTarget
+
+instance ApplyClass (RelationMorphism rSource rTarget) 
+                    (recObj rSource) 
+                    (recObj rTarget) where
+  ($) = recMap
 
 instance RelationClass Relation where
   (~>) = RelationMorphism
+
+RelationRelation : Relation
+RelationRelation = MkRelation Relation RelationMorphism
 
