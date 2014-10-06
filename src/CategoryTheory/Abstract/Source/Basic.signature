@@ -1,0 +1,88 @@
+-- 
+-- defines a basic category structure 
+--
+
+module Abstract.Naive.Basic
+
+infix class :>, ~>
+
+structure 
+  Relation 
+    (obj : Type) 
+  where
+    (~>) : obj ->> Type
+
+implicit Type : Relation 
+implicit Relation : Relation
+implicit RelationMorphism : Relation
+
+structure 
+  RichRelation 
+    (over : Type)
+    (obj : over)
+  where
+    (:>) : obj ->> over
+
+implicit Type : RichRelation Type
+implicit Relation : RichRelation Relation
+
+signature Monoid0
+    (class carrier : Type)
+  where
+    one/(1) : carrier
+    product/(#) : (carrier, carrier) -> carrier
+
+implicit Type : Monoid0
+implicit Relation : Monoid0
+
+signature
+  (Relation Type, Monoid0 Type, Relation ob) =>
+  Category0 -- = Poset
+    (class ob : Type) 
+  where
+    Id : {o : ob} -> 
+      one ~> (o~>o)      
+    Mul : {o1, o2, o3 : ob} -> 
+      (o1~>o2) # (o2~>o3) ~> (o1~>o3)
+  
+signature 
+  (Relation over, Monoid0 over, RichRelation over ob) =>
+  RichCategory0
+    {over : Type}
+    (class ob : Type) 
+  where
+    RId : {o : ob} -> 
+      1 ~> (o~>o)      
+    RMul : {o1, o2, o3 : ob} -> 
+      (o1~>o2) # (o2~>o3) ~> (o1~>o3)
+  
+signature 
+  (Relation Type, Category0 ob) => 
+  Groupoid0
+    (class ob : Type) 
+  where
+    Inv : {o1, o2 : ob} -> 
+      (o1~>o2) ~> (o2~>o1)
+
+signature 
+  (Relation over, RichCategory0 over ob) => 
+  Groupoid0
+    {over : Type}
+    (class ob : Type) 
+  where
+    Inv : {o1, o2 : ob} -> 
+      (o1~>o2) ~> (o2~>o1)
+
+implicit Groupoid0 : Relation
+implicit Groupoid0 : Monoid
+
+signature 
+  (RichCategory0 ob (~>)) =>
+  Category1
+    (class ob : Type) 
+    (implicit class (~>) : ob ->> Setoid)
+  where
+    IdNeutralLeft : 
+      {o1, o2 : ob} ->
+      (m : o1 ~> o2) :~> (1 >>> m ~> m)
+
