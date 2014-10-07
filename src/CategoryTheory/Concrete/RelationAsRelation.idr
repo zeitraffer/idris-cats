@@ -11,7 +11,7 @@ IsRelationMorphism rSource rTarget mor =
   (recIsRel rSource oSource oTarget) ->
   (recIsRel rTarget (mor oSource) (mor oTarget))
 
-record RelationMorphism : (rSource, rTarget: Relation) -> Type where
+record RelationMorphism : Relation ->> Type where
   MkRelationMorphism : 
     {rSource, rTarget: Relation} ->
     (recMap: |rSource| -> |rTarget| ) ->

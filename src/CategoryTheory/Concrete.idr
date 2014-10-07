@@ -11,4 +11,6 @@ import CategoryTheory.Concrete.RichRelationAsRelation
 
 import CategoryTheory.Concrete.Monoid0
 import CategoryTheory.Concrete.TypeAsMonoid0
+import CategoryTheory.Concrete.RelationAsMonoid0
+
 
