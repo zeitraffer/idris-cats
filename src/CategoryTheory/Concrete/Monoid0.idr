@@ -29,11 +29,15 @@ instance ObClass Monoid0 where
   Ob = recCarrier    
 
 class Monoid0Class (carrier : Type) where
-  getMonoid0 : IsMonoid0 carrier
+  getUnit : Monoid0_Unit carrier 
+  getProduct : Monoid0_Product carrier 
 
-unit : (Monoid0Class carrier) => carrier
-unit = recUnit getMonoid0
+unit : (Monoid0Class carrier) => Monoid0_Unit carrier
+unit = getUnit
 
-(#) : (Monoid0Class carrier) => carrier -> carrier -> carrier
-(#) = recProduct getMonoid0
+(#) : (Monoid0Class carrier) => Monoid0_Product carrier
+(#) = getProduct
+
+getMonoid0 : (Monoid0Class carrier) => IsMonoid0 carrier
+getMonoid0 = (getUnit, getProduct)
 

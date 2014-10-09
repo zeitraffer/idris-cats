@@ -13,9 +13,7 @@ IsRichRelationMorphism rSource rTarget mor =
   (recIsRel rSource oSource oTarget) ~>
   (recIsRel rTarget (mor oSource) (mor oTarget))
 
-record RichRelationMorphism : 
-    (rSource, rTarget: RichRelation over) -> 
-    Type where
+record RichRelationMorphism : RichRelation over ->> Type where
   MkRichRelationMorphism : 
     (RelationClass over) =>
     {rSource, rTarget: RichRelation over} ->

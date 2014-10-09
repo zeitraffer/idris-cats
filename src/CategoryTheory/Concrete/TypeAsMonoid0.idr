@@ -2,19 +2,19 @@ module CategoryTheory.Concrete.TypeAsMonoid0
 
 import CategoryTheory.Concrete.Monoid0
 
-data TypeUnit : Monoid0_Unit Type where
-  MkTypeUnit : TypeUnit
+UnitType : Monoid0_Unit Type 
+UnitType = ()
 
-data TypeProduct : Monoid0_Product Type where
-  MkTypeProduct : 
-    {left, right: Type} -> 
-    (l: left) ->
-    (r: right) ->
-    TypeProduct left right
+ProductType : Monoid0_Product Type
+ProductType left right = (left, right)
 
 instance Monoid0Class Type where
-  getMonoid0 = (TypeUnit, TypeProduct)
+  getUnit = UnitType
+  getProduct = ProductType
 
 TypeMonoid0 : Monoid0
-TypeMonoid0 = MkMonoid0 Type (TypeUnit, TypeProduct)  
+TypeMonoid0 = MkMonoid0 Type (UnitType, ProductType)  
+
+(&) : left -> right -> (left # right)
+l & r = (l, r)
 
