@@ -3,10 +3,10 @@ module CategoryTheory.Concrete.Monoid0
 import CategoryTheory.Common
 
 Monoid0_Unit : Type -> Type
-Monoid0_Unit carrier = carrier
+Monoid0_Unit carrier = () -> carrier
 
 Monoid0_Product : Type -> Type
-Monoid0_Product carrier = carrier -> carrier -> carrier
+Monoid0_Product carrier = (carrier, carrier) -> carrier
 
 IsMonoid0 : Type -> Type
 IsMonoid0 carrier = 
@@ -29,15 +29,17 @@ instance ObClass Monoid0 where
   Ob = recCarrier    
 
 class Monoid0Class (carrier : Type) where
-  getUnit : Monoid0_Unit carrier 
-  getProduct : Monoid0_Product carrier 
+  getMonoid0 : IsMonoid0 carrier
 
-unit : (Monoid0Class carrier) => Monoid0_Unit carrier
-unit = getUnit
+getUnit0 : (Monoid0Class carrier) => Monoid0_Unit carrier 
+getUnit0 = recUnit getMonoid0
 
-(#) : (Monoid0Class carrier) => Monoid0_Product carrier
-(#) = getProduct
+getProduct0 : (Monoid0Class carrier) => Monoid0_Product carrier 
+getProduct0 = recProduct getMonoid0
 
-getMonoid0 : (Monoid0Class carrier) => IsMonoid0 carrier
-getMonoid0 = (getUnit, getProduct)
+unit : (Monoid0Class carrier) => carrier
+unit = getUnit0 ()
+
+(#) : (Monoid0Class carrier) => carrier -> carrier -> carrier
+left # right = getProduct0 (left, right)
 

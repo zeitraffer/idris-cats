@@ -7,11 +7,11 @@ import CategoryTheory.Concrete.TypeAsMonoid0
 data UnitMorphism : unit ->> Type where
   MkUnitMorphism : UnitMorphism () ()
 
-instance RelationClass UnitType where
+instance RelationClass unit where
   (~>) = UnitMorphism
 
 UnitRelation : Monoid0_Unit Relation
-UnitRelation = MkRelation UnitType UnitMorphism
+UnitRelation _ = MkRelation unit UnitMorphism
 
 data ProductMorphism : 
     {left, right: Type} ->
@@ -26,16 +26,16 @@ data ProductMorphism :
       ProductMorphism (leftSource & rightSource)
                       (leftTarget & rightTarget)
 
+ProductRelation : Monoid0_Product Relation
+ProductRelation (left, right) = MkRelation ( |left| # |right| ) ProductMorphism
+
 instance RelationClass (left, right) where
   (~>) = ProductMorphism
-
-ProductRelation : Monoid0_Product Relation
-ProductRelation left right = MkRelation ( |left| # |right| ) ProductMorphism
-
-instance Monoid0Class Relation where
-  getUnit = UnitRelation
-  getProduct = ProductRelation
 
 RelationMonoid0 : Monoid0
 RelationMonoid0 = MkMonoid0 Relation (UnitRelation, ProductRelation)
 
+instance Monoid0Class Relation where
+  getMonoid0 = recIsMonoid RelationMonoid0
+
+  

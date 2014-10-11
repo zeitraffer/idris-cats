@@ -35,6 +35,9 @@ signature Monoid0
 
 implicit Type : Monoid0
 implicit Relation : Monoid0
+?implicit RichRelation : Monoid0
+?implicit Monoid0 : Relation
+?implicit Monoid0 : Monoid0
 
 signature
   (Relation Type, Monoid0 Type, Relation ob) =>
@@ -45,6 +48,14 @@ signature
       one ~> (o~>o)      
     Mul : {o1, o2, o3 : ob} -> 
       (o1~>o2) # (o2~>o3) ~> (o1~>o3)
+
+?implicit Type : Category0
+?implicit Relation : Category0
+?implicit RichRelation : Category0
+?implicit Monoid0 : Category0
+?implicit Category0 : Category0
+
+!Category0 ==> Monoid0
   
 signature 
   (Relation over, Monoid0 over, RichRelation over ob) =>

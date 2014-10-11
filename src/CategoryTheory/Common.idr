@@ -2,7 +2,7 @@ module CategoryTheory.Common
 
 infixr 1 ->>, ~>, :>, +>
 infixl 15 $ 
-infixl 9 #, &               
+infixl 9 #, &, >>>              
 
 (->>) : Type -> Type -> Type
 node ->> edge = (source, target: node) -> edge
@@ -24,4 +24,6 @@ syntax "|" [t] "|" = Ob t
 class ApplyClass (map : Type) (source: Type) (target: Type) where
   ($) : map -> source -> target
 
+liftUnit : {t: Type} -> t -> () -> t
+liftUnit x = \ _ => x
 
