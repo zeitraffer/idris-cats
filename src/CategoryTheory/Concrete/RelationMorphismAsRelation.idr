@@ -3,7 +3,7 @@ module CategoryTheory.Concrete.RelationMorphismAsRelation
 import CategoryTheory.Concrete.RelationAsRelation
 
 RelationMorphismMorphism : 
-  {rSource, rTarget: Relation} -> 
+  {rSource, rTarget: RelationRecord} -> 
   (rSource ~> rTarget) ->>
   Type
 RelationMorphismMorphism {rSource} {rTarget} mSource mTarget =
@@ -13,6 +13,6 @@ RelationMorphismMorphism {rSource} {rTarget} mSource mTarget =
 instance RelationClass (RelationMorphism rSource rTarget) where 
   (~>) = RelationMorphismMorphism
 
-RelationMorphismRelation : Relation ->> Relation
+RelationMorphismRelation : RelationRecord ->> RelationRecord
 RelationMorphismRelation rSource rTarget = 
   MkRelation (RelationMorphism rSource rTarget) RelationMorphismMorphism

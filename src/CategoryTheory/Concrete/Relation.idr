@@ -5,13 +5,13 @@ import CategoryTheory.Common
 IsRelation : Type -> Type
 IsRelation obj = obj ->> Type
 
-record Relation : Type where
+record RelationRecord : Type where
   MkRelation : 
     (recObj: Type) ->
     (recIsRel: IsRelation recObj) ->
-    Relation
+    RelationRecord
 
-instance ObClass Relation where
+instance ObClass RelationRecord where
   Ob = recObj
 
 class RelationClass (obj: Type) where

@@ -6,6 +6,6 @@ import CategoryTheory.Concrete.TypeAsRelation
 instance RichRelationClass Type Type where
   (:>) = TypeMorphism
 
-TypeRichRelation : RichRelation Type
+TypeRichRelation : RichRelationRecord Type
 TypeRichRelation = MkRichRelation Type TypeMorphism
 

@@ -22,14 +22,14 @@ recIdentity (i, m) = i
 recMultiply : IsCategory0 ob to -> Category0_Multiply ob to
 recMultiply (i, m) = m
 
-record Category0 : Type where
+record Category0Record : Type where
   MkCategory0 : 
     (recOb: Type) -> 
     (recTo: recOb ->> Type) -> 
     (recIsCategory: IsCategory0 recOb recTo) -> 
-    Category0
+    Category0Record
 
-instance ObClass Category0 where
+instance ObClass Category0Record where
   Ob = recOb
 
 class Category0Class (ob: Type) (to: ob ->> Type) where

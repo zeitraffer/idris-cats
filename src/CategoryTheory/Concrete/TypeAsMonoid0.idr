@@ -8,7 +8,7 @@ UnitType _ = ()
 ProductType : Monoid0_Product Type
 ProductType (left, right) = (left, right)
 
-TypeMonoid0 : Monoid0
+TypeMonoid0 : Monoid0Record
 TypeMonoid0 = MkMonoid0 Type (UnitType, ProductType)  
 
 instance Monoid0Class Type where

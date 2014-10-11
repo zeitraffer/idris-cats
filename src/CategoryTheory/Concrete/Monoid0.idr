@@ -19,13 +19,13 @@ recUnit (u, p) = u
 recProduct : IsMonoid0 carrier -> Monoid0_Product carrier
 recProduct (u, p) = p
 
-record Monoid0 : Type where
+record Monoid0Record : Type where
   MkMonoid0 : 
     (recCarrier: Type) -> 
     (recIsMonoid: IsMonoid0 recCarrier) -> 
-    Monoid0
+    Monoid0Record
 
-instance ObClass Monoid0 where
+instance ObClass Monoid0Record where
   Ob = recCarrier    
 
 class Monoid0Class (carrier : Type) where

@@ -3,7 +3,7 @@ module CategoryTheory.Concrete.RelationAsRelation
 import CategoryTheory.Concrete.Relation
 
 IsRelationMorphism : 
-  (rSource, rTarget: Relation) -> 
+  (rSource, rTarget: RelationRecord) -> 
   ( |rSource| -> |rTarget| ) -> 
   Type
 IsRelationMorphism rSource rTarget mor = 
@@ -11,9 +11,9 @@ IsRelationMorphism rSource rTarget mor =
   (recIsRel rSource oSource oTarget) ->
   (recIsRel rTarget (mor oSource) (mor oTarget))
 
-record RelationMorphism : Relation ->> Type where
+record RelationMorphism : RelationRecord ->> Type where
   MkRelationMorphism : 
-    {rSource, rTarget: Relation} ->
+    {rSource, rTarget: RelationRecord} ->
     (recMap: |rSource| -> |rTarget| ) ->
     (recIsRelMor: IsRelationMorphism rSource rTarget recMap) ->
     RelationMorphism rSource rTarget
@@ -23,9 +23,9 @@ instance ApplyClass (RelationMorphism rSource rTarget)
                     (recObj rTarget) where
   ($) = recMap
 
-instance RelationClass Relation where
+instance RelationClass RelationRecord where
   (~>) = RelationMorphism
 
-RelationRelation : Relation
-RelationRelation = MkRelation Relation RelationMorphism
+RelationRelation : RelationRecord
+RelationRelation = MkRelation RelationRecord RelationMorphism
 

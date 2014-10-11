@@ -10,7 +10,7 @@ data UnitMorphism : unit ->> Type where
 instance RelationClass unit where
   (~>) = UnitMorphism
 
-UnitRelation : Monoid0_Unit Relation
+UnitRelation : Monoid0_Unit RelationRecord
 UnitRelation _ = MkRelation unit UnitMorphism
 
 data ProductMorphism : 
@@ -26,16 +26,15 @@ data ProductMorphism :
       ProductMorphism (leftSource & rightSource)
                       (leftTarget & rightTarget)
 
-ProductRelation : Monoid0_Product Relation
+ProductRelation : Monoid0_Product RelationRecord
 ProductRelation (left, right) = MkRelation ( |left| # |right| ) ProductMorphism
 
 instance RelationClass (left, right) where
   (~>) = ProductMorphism
 
-RelationMonoid0 : Monoid0
-RelationMonoid0 = MkMonoid0 Relation (UnitRelation, ProductRelation)
+RelationMonoid0 : Monoid0Record
+RelationMonoid0 = MkMonoid0 RelationRecord (UnitRelation, ProductRelation)
 
-instance Monoid0Class Relation where
+instance Monoid0Class RelationRecord where
   getMonoid0 = recIsMonoid RelationMonoid0
 
-  

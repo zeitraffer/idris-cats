@@ -5,9 +5,9 @@ import CategoryTheory.Concrete.RelationAsRelation
 import CategoryTheory.Concrete.RelationMorphismAsRelation
 import CategoryTheory.Concrete.RichRelation
 
-instance RichRelationClass Relation Relation where
+instance RichRelationClass RelationRecord RelationRecord where
   (:>) = RelationMorphismRelation
 
-RelationRichRelation : RichRelation Relation
-RelationRichRelation = MkRichRelation Relation RelationMorphismRelation
+RelationRichRelation : RichRelationRecord RelationRecord
+RelationRichRelation = MkRichRelation RelationRecord RelationMorphismRelation
 

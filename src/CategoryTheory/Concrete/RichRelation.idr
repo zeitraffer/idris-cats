@@ -5,14 +5,14 @@ import CategoryTheory.Common
 IsRichRelation : Type -> Type -> Type
 IsRichRelation over obj = obj ->> over
 
-record RichRelation : Type -> Type where
+record RichRelationRecord : Type -> Type where
   MkRichRelation : 
     {over: Type} ->
     (recObj: Type) ->
     (recIsRel: IsRichRelation over recObj) ->
-    RichRelation over
+    RichRelationRecord over
 
-instance ObClass (RichRelation over) where
+instance ObClass (RichRelationRecord over) where
   Ob = recObj
 
 class RichRelationClass (over: Type) (obj: Type) where

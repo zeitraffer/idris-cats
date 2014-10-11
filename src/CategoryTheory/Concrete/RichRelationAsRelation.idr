@@ -5,7 +5,7 @@ import CategoryTheory.Concrete.RichRelation
 
 IsRichRelationMorphism : 
   (RelationClass over) =>
-  (rSource, rTarget: RichRelation over) -> 
+  (rSource, rTarget: RichRelationRecord over) -> 
   ( |rSource| -> |rTarget| ) -> 
   Type
 IsRichRelationMorphism rSource rTarget mor = 
@@ -13,23 +13,25 @@ IsRichRelationMorphism rSource rTarget mor =
   (recIsRel rSource oSource oTarget) ~>
   (recIsRel rTarget (mor oSource) (mor oTarget))
 
-record RichRelationMorphism : RichRelation over ->> Type where
+record RichRelationMorphism : RichRelationRecord over ->> Type where
   MkRichRelationMorphism : 
     (RelationClass over) =>
-    {rSource, rTarget: RichRelation over} ->
+    {rSource, rTarget: RichRelationRecord over} ->
     (recMap: |rSource| -> |rTarget| ) ->
     (recIsRelMor: IsRichRelationMorphism rSource rTarget recMap) ->
     RichRelationMorphism rSource rTarget
 
 instance ApplyClass (RichRelationMorphism rSource rTarget) 
                     (recObj rSource) 
-                    (recObj rTarget) where
-  ($) = recMap
+                    (recObj rTarget) 
+  where
+    ($) = recMap
 
 instance (RelationClass over) => 
-         RelationClass (RichRelation over) where
-  (~>) = RichRelationMorphism
+         RelationClass (RichRelationRecord over) 
+  where
+    (~>) = RichRelationMorphism
 
-RichRelationRelation : Type -> Relation
-RichRelationRelation over = MkRelation (RichRelation over) RichRelationMorphism
+RichRelationRelation : Type -> RelationRecord
+RichRelationRelation over = MkRelation (RichRelationRecord over) RichRelationMorphism
 

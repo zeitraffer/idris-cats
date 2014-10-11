@@ -14,6 +14,6 @@ instance ApplyClass (TypeMorphism source target) source target where
 instance RelationClass Type where
   (~>) = TypeMorphism
 
-TypeRelation : Relation
+TypeRelation : RelationRecord
 TypeRelation = MkRelation Type TypeMorphism
 
