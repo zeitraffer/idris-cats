@@ -4,6 +4,8 @@ import CategoryTheory.Concrete.Monoid0
 import CategoryTheory.Concrete.RichRelation
 import CategoryTheory.Concrete.TypeAsMonoid0
 
+{- TODO
+
 data UnitOver : Type -> Type where
   MkUnitOver : (t: Type) -> UnitOver t
 
@@ -18,8 +20,6 @@ instance (Monoid0Class over) => RichRelationClass over (UnitOver over) where
 
 UnitRichRelation : (Monoid0Class over) => Monoid0_Unit (RichRelationRecord over)
 UnitRichRelation {over} _ = MkRichRelation (UnitOver over) UnitRichMorphism
-
-{-
 
 ProductRichMorphism : 
     (Monoid0Class over, RichRelationClass over left, RichRelationClass over right) => 

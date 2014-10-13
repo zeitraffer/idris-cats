@@ -3,18 +3,21 @@ module CategoryTheory.Concrete.RichRelation
 import CategoryTheory.Common
 
 RichRelation_Arrow : Type -> Type -> Type
-RichRelation_Arrow over obj = obj ->> over
+RichRelation_Arrow over ob = ob ->> over
 
-class RichRelationClass (over: Type) (obj: Type) where
-  (:>) : RichRelation_Arrow over obj
+class RichRelationClass (over: Type) (ob: Type) where
+  (:>) : RichRelation_Arrow over ob
 
 record RichRelationRecord : Type -> Type where
   MkRichRelation : 
     {over: Type} ->
-    (recObj: Type) ->
-    (recInstance: RichRelationClass over recObj) ->
+    (recOb: Type) ->
+    (recInstance: RichRelationClass over recOb) ->
     RichRelationRecord over
 
 instance ObClass (RichRelationRecord over) where
-  Ob = recObj
+  Ob = recOb
+
+RichHom : (relation: RichRelationRecord over) -> RichRelation_Arrow over |relation|
+RichHom relation = (:>) @{recInstance relation}
 

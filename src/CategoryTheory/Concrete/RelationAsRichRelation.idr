@@ -9,5 +9,5 @@ instance RichRelationClass RelationRecord RelationRecord where
   (:>) = RelationMorphismRelation
 
 RelationRichRelation : RichRelationRecord RelationRecord
-RelationRichRelation = MkRichRelation RelationRecord RelationMorphismRelation
+RelationRichRelation = MkRichRelation RelationRecord %instance
 

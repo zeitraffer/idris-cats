@@ -3,17 +3,20 @@ module CategoryTheory.Concrete.Relation
 import CategoryTheory.Common
 
 Relation_Arrow : Type -> Type
-Relation_Arrow obj = obj ->> Type
+Relation_Arrow ob = ob ->> Type
 
-class RelationClass (obj: Type) where
-  (~>) : Relation_Arrow obj
+class RelationClass (ob: Type) where
+  (~>) : Relation_Arrow ob
 
 record RelationRecord : Type where
   MkRelation : 
-    (recObj: Type) ->
-    (recInstance: RelationClass recObj) ->
+    (recOb: Type) ->
+    (recInstance: RelationClass recOb) ->
     RelationRecord
 
 instance ObClass RelationRecord where
-  Ob = recObj
+  Ob = recOb
+
+Hom : (relation: RelationRecord) -> Relation_Arrow |relation|
+Hom relation = (~>) @{recInstance relation}
 

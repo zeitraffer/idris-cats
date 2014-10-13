@@ -2,7 +2,7 @@ module CategoryTheory.Concrete.TypeAsRelation
 
 import CategoryTheory.Concrete.Relation
 
-record TypeMorphism : Type ->> Type where
+record TypeMorphism : Relation_Arrow Type where
   MkTypeMor : 
     {source, target: Type} ->
     (recTypeMor: source -> target) ->
