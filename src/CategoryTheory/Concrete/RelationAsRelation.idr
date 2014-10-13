@@ -1,31 +1,56 @@
 module CategoryTheory.Concrete.RelationAsRelation
 
 import CategoryTheory.Concrete.Relation
+import CategoryTheory.Concrete.TypeAsRelation
 
-IsRelationMorphism : 
-  (rSource, rTarget: RelationRecord) -> 
-  ( |rSource| -> |rTarget| ) -> 
-  Type
-IsRelationMorphism rSource rTarget mor = 
-  (oSource, oTarget: |rSource| ) ->
-  (recIsRel rSource oSource oTarget) ->
-  (recIsRel rTarget (mor oSource) (mor oTarget))
-
-record RelationMorphism : RelationRecord ->> Type where
+data RelationMorphism : RelationRecord ->> Type where
   MkRelationMorphism : 
-    {rSource, rTarget: RelationRecord} ->
-    (recMap: |rSource| -> |rTarget| ) ->
-    (recIsRelMor: IsRelationMorphism rSource rTarget recMap) ->
-    RelationMorphism rSource rTarget
+    (RelationClass source, RelationClass target) =>
+    (recMap: source -> target ) ->
+    (recCong: (x, y: source) ->
+              (x ~> y) ~> (recMap x ~> recMap y)) ->
+    RelationMorphism (MkRelation source %instance) 
+                     (MkRelation target %instance)
 
-instance ApplyClass (RelationMorphism rSource rTarget) 
-                    (recObj rSource) 
-                    (recObj rTarget) where
-  ($) = recMap
+recMap : 
+    (RelationClass source, RelationClass target) =>
+    RelationMorphism (MkRelation source %instance) 
+                     (MkRelation target %instance) ->
+    source -> target
+recMap (MkRelationMorphism map cong) = map
+
+recCong : 
+    (RelationClass source, RelationClass target) =>
+    RelationMorphism (MkRelation source %instance) 
+                     (MkRelation target %instance) ->
+    (x, y: source) ->
+    (x ~> y) ~> (recMap x ~> recMap y)
+recMap (MkRelationMorphism map cong) = cong
+
+
+{-
+
+instance 
+  Apply0Class (RelationMorphism rSource rTarget) 
+              ( |rSource| ) 
+              ( |rTarget| ) 
+  where
+    ($) = recMap
+
+  ($~) : 
+    (RelationClass source, RelationClass target) =>
+    {x, y: source} -> 
+    (fun: RelationMorphism source target) -> 
+    (sourceTo fun x y) -> 
+    (targetTo fun (recMap fun x) (recMap fun y))
+  ($~) {source} {target} {x} {y} (MkRelationMorphism map cong) = 
+    cong x y
 
 instance RelationClass RelationRecord where
-  (~>) = RelationMorphism
+  rSource ~> rTarget = RelationMorphism |rSource| |rTarget|
 
 RelationRelation : RelationRecord
-RelationRelation = MkRelation RelationRecord RelationMorphism
+RelationRelation = MkRelation RelationRecord %instance
+
+-}
 

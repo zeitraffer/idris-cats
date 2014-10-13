@@ -5,15 +5,15 @@ import CategoryTheory.Concrete.Relation
 record TypeMorphism : Type ->> Type where
   MkTypeMor : 
     {source, target: Type} ->
-    (unTypeMor: source -> target) ->
+    (recTypeMor: source -> target) ->
     TypeMorphism source target
 
-instance ApplyClass (TypeMorphism source target) source target where
-  (MkTypeMor mor) $ s = mor s
+instance Apply0Class (TypeMorphism source target) source target where
+  ($) = recTypeMor
 
 instance RelationClass Type where
   (~>) = TypeMorphism
 
 TypeRelation : RelationRecord
-TypeRelation = MkRelation Type TypeMorphism
+TypeRelation = MkRelation Type %instance
 

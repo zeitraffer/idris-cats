@@ -35,7 +35,7 @@ signature Monoid0
 
 implicit Type : Monoid0
 implicit Relation : Monoid0
-?implicit RichRelation : Monoid0
+implicit (over : Monoid) => RichRelation over : Monoid0
 ?implicit Monoid0 : Relation
 ?implicit Monoid0 : Monoid0
 

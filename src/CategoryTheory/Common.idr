@@ -1,7 +1,7 @@
 module CategoryTheory.Common
 
 infixr 1 ->>, ~>, :>, +>
-infixl 15 $ 
+infixl 15 $, $~
 infixl 9 #, &, >>>              
 
 (->>) : Type -> Type -> Type
@@ -21,8 +21,23 @@ instance ObClass Type where
 
 syntax "|" [t] "|" = Ob t
 
-class ApplyClass (map : Type) (source: Type) (target: Type) where
-  ($) : map -> source -> target
+class 
+  Apply0Class (map : Type) 
+              (obSource: Type) 
+              (obTarget: Type) 
+  where
+    ($) : map -> obSource -> obTarget
+
+class 
+  (Apply0Class map obSource obTarget) =>
+  Apply1Class (map : Type) 
+              (obSource: Type) 
+              (obTarget: Type) 
+              (toSource: obSource ->> Type) 
+              (toTarget: obTarget ->> Type)
+  where
+    ($~) : {xSource, xTarget: obSource} -> 
+      (m: map) -> (xSource `toSource` xTarget) -> ((m $ xSource)`toTarget`(m $ xTarget))
 
 liftUnit : {t: Type} -> t -> () -> t
 liftUnit x = \ _ => x

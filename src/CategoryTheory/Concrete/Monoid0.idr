@@ -8,38 +8,22 @@ Monoid0_Unit carrier = () -> carrier
 Monoid0_Product : Type -> Type
 Monoid0_Product carrier = (carrier, carrier) -> carrier
 
-IsMonoid0 : Type -> Type
-IsMonoid0 carrier = 
-  ( Monoid0_Unit carrier,
-    Monoid0_Product carrier )
-
-recUnit : IsMonoid0 carrier -> Monoid0_Unit carrier
-recUnit (u, p) = u
-
-recProduct : IsMonoid0 carrier -> Monoid0_Product carrier
-recProduct (u, p) = p
-
-record Monoid0Record : Type where
-  MkMonoid0 : 
-    (recCarrier: Type) -> 
-    (recIsMonoid: IsMonoid0 recCarrier) -> 
-    Monoid0Record
-
-instance ObClass Monoid0Record where
-  Ob = recCarrier    
-
 class Monoid0Class (carrier : Type) where
-  getMonoid0 : IsMonoid0 carrier
-
-getUnit0 : (Monoid0Class carrier) => Monoid0_Unit carrier 
-getUnit0 = recUnit getMonoid0
-
-getProduct0 : (Monoid0Class carrier) => Monoid0_Product carrier 
-getProduct0 = recProduct getMonoid0
+  getUnit0 : Monoid0_Unit carrier 
+  getProduct0 : Monoid0_Product carrier 
 
 unit : (Monoid0Class carrier) => carrier
 unit = getUnit0 ()
 
 (#) : (Monoid0Class carrier) => carrier -> carrier -> carrier
 left # right = getProduct0 (left, right)
+
+record Monoid0Record : Type where
+  MkMonoid0 : 
+    (recCarrier: Type) -> 
+    (recInstance: Monoid0Class recCarrier) -> 
+    Monoid0Record
+
+instance ObClass Monoid0Record where
+  Ob = recCarrier    
 

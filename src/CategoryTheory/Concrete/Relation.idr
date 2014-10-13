@@ -2,19 +2,18 @@ module CategoryTheory.Concrete.Relation
 
 import CategoryTheory.Common
 
-IsRelation : Type -> Type
-IsRelation obj = obj ->> Type
+Relation_Arrow : Type -> Type
+Relation_Arrow obj = obj ->> Type
+
+class RelationClass (obj: Type) where
+  (~>) : Relation_Arrow obj
 
 record RelationRecord : Type where
   MkRelation : 
     (recObj: Type) ->
-    (recIsRel: IsRelation recObj) ->
+    (recInstance: RelationClass recObj) ->
     RelationRecord
 
 instance ObClass RelationRecord where
   Ob = recObj
-
-class RelationClass (obj: Type) where
-  (~>) : IsRelation obj
-
 
