@@ -34,9 +34,9 @@ mkCategory0 : (Category0Class ob to) => Category0Record
 mkCategory0 {ob} {to} = MkCategory0 ob to %instance
 
 -- identity with implicit index
-id : (Category0Class ob to) => {o: ob} -> 
+jd : (Category0Class ob to) => {o: ob} -> 
     (o `to` o)
-id {ob} {to} {o} = 
+jd {ob} {to} {o} = 
     getIdentity0 {ob=ob} {to=to} o ()
 
 -- multiply with implicit index
