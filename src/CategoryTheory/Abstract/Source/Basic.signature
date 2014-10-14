@@ -36,7 +36,7 @@ signature Monoid0
 implicit Type : Monoid0
 implicit Relation : Monoid0
 implicit (over : Monoid) => RichRelation over : Monoid0
-?implicit Monoid0 : Relation -- trivial
+implicit Monoid0 : Relation -- trivial
 ?implicit Monoid0 : Monoid0 
 
 signature
@@ -45,7 +45,7 @@ signature
     (class ob : Type) 
   where
     Id : {o : ob} -> 
-      unit -> (o~>o)      
+      1 -> (o~>o)      
     Mul : {o1, o2, o3 : ob} -> 
       (o1~>o2) # (o2~>o3) -> (o1~>o3)
 
@@ -67,7 +67,7 @@ signature
     (class ob : Type) 
   where
     RId : {o : ob} -> 
-      unit ~> (o:>o)      
+      1 ~> (o:>o)      
     RMul : {o1, o2, o3 : ob} -> 
       (o1:>o2) # (o2:>o3) ~> (o1:>o3)
   
