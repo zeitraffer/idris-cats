@@ -49,7 +49,7 @@ signature
     Mul : {o1, o2, o3 : ob} -> 
       (o1~>o2) # (o2~>o3) -> (o1~>o3)
 
-?implicit Type : Category0
+implicit Type : Category0
 ?implicit Relation : Category0
 ?implicit RichRelation : Category0
 ?implicit Monoid0 : Category0
