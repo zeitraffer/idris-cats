@@ -37,7 +37,7 @@ implicit Type : Monoid0
 implicit Relation : Monoid0
 implicit (over : Monoid) => RichRelation over : Monoid0
 implicit Monoid0 : Relation -- trivial
-?implicit Monoid0 : Monoid0 
+implicit Monoid0 : Monoid0 
 
 signature
   (Relation Type, Monoid0 Type, Relation ob) =>
@@ -101,3 +101,4 @@ signature
       {o1, o2 : ob} ->
       (m : o1 ~> o2) :~> (1 >>> m ~> m)
   -- ...
+

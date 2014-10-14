@@ -14,5 +14,7 @@ import CategoryTheory.Concrete.TypeAsMonoid0
 import CategoryTheory.Concrete.RelationAsMonoid0
 import CategoryTheory.Concrete.RichRelationAsMonoid0
 import CategoryTheory.Concrete.Monoid0AsRelation
+import CategoryTheory.Concrete.Monoid0AsMonoid0
 
 import CategoryTheory.Concrete.Category0
+
