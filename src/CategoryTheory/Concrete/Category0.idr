@@ -3,6 +3,11 @@ module CategoryTheory.Concrete.Category0
 import CategoryTheory.Concrete.TypeAsRelation
 import CategoryTheory.Concrete.TypeAsMonoid0
 
+%access public
+%default total
+
+------------------------------------------------------------
+
 Category0_Identity : (ob: Type) -> (to: ob ->> Type) -> Type
 Category0_Identity ob to = (o: ob) -> 
     unit ~> (o `to` o)

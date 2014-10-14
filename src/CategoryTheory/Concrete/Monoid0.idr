@@ -2,6 +2,11 @@ module CategoryTheory.Concrete.Monoid0
 
 import CategoryTheory.Common
 
+%access public
+%default total
+
+------------------------------------------------------------
+
 Monoid0_Unit : Type -> Type
 Monoid0_Unit carrier = () -> carrier
 

@@ -2,6 +2,11 @@ module CategoryTheory.Concrete.RelationMorphismAsRelation
 
 import CategoryTheory.Concrete.RelationAsRelation
 
+%access public
+%default total
+
+------------------------------------------------------------
+
 instance RelationClass (RelationMorphism rSource rTarget) where 
   (~>) {rSource} {rTarget} mSource mTarget =
     (o: |rSource| ) ->

@@ -2,6 +2,11 @@ module CategoryTheory.Concrete.RichRelation
 
 import CategoryTheory.Common
 
+%access public
+%default total
+
+------------------------------------------------------------
+
 RichRelation_Arrow : Type -> Type -> Type
 RichRelation_Arrow over ob = ob ->> over
 

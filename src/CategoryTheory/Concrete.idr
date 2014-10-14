@@ -1,5 +1,7 @@
 module CategoryTheory.Concrete
 
+------------------------------------------------------------
+
 import CategoryTheory.Concrete.Relation
 import CategoryTheory.Concrete.TypeAsRelation
 import CategoryTheory.Concrete.RelationAsRelation

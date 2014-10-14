@@ -3,6 +3,11 @@ module CategoryTheory.Concrete.RichRelationAsRelation
 import CategoryTheory.Concrete.Relation
 import CategoryTheory.Concrete.RichRelation
 
+%access public
+%default total
+
+------------------------------------------------------------
+
 data 
   RichRelationMorphism : 
     (rOver: RelationRecord) -> 

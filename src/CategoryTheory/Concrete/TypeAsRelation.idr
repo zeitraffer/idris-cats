@@ -2,6 +2,11 @@ module CategoryTheory.Concrete.TypeAsRelation
 
 import CategoryTheory.Concrete.Relation
 
+%access public
+%default total
+
+------------------------------------------------------------
+
 record TypeMorphism : Relation_Arrow Type where
   MkTypeMor : 
     {source, target: Type} ->

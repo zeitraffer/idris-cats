@@ -2,6 +2,11 @@ module CategoryTheory.Concrete.RelationAsRelation
 
 import CategoryTheory.Concrete.Relation
 
+%access public
+%default total
+
+------------------------------------------------------------
+
 data RelationMorphism : Relation_Arrow RelationRecord where
   MkRelationMorphism : 
     (RelationClass source, RelationClass target) =>

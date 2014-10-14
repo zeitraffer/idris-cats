@@ -1,5 +1,10 @@
 module CategoryTheory.Common
 
+%access public
+%default total
+
+------------------------------------------------------------
+
 infixr 1 ->>, ~>, :>, +>
 infixl 15 $, $~
 infixl 9 #, &, >>>              

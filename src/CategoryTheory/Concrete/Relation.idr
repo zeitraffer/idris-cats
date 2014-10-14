@@ -2,6 +2,11 @@ module CategoryTheory.Concrete.Relation
 
 import CategoryTheory.Common
 
+%access public
+%default total
+
+------------------------------------------------------------
+
 Relation_Arrow : Type -> Type
 Relation_Arrow ob = ob ->> Type
 

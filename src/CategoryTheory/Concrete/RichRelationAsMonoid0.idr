@@ -4,6 +4,11 @@ import CategoryTheory.Concrete.Monoid0
 import CategoryTheory.Concrete.RichRelation
 import CategoryTheory.Concrete.TypeAsMonoid0
 
+%access public
+%default total
+
+------------------------------------------------------------
+
 data UnitOver : Type -> Type where
   MkUnitOver : (t: Type) -> UnitOver t
 

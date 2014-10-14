@@ -4,6 +4,11 @@ import CategoryTheory.Concrete.Monoid0
 import CategoryTheory.Concrete.Relation
 import CategoryTheory.Concrete.TypeAsMonoid0
 
+%access public
+%default total
+
+------------------------------------------------------------
+
 data UnitMorphism : Relation_Arrow unit where
   MkUnitMorphism : UnitMorphism () ()
 

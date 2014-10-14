@@ -3,6 +3,11 @@ module CategoryTheory.Concrete.Monoid0AsMonoid0
 import CategoryTheory.Concrete.Monoid0
 import CategoryTheory.Concrete.TypeAsMonoid0
 
+%access public
+%default total
+
+------------------------------------------------------------
+
 instance Monoid0Class () where
   getUnit0 _ = ()
   getProduct0 _ = ()
