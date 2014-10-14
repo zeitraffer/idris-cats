@@ -8,14 +8,14 @@ data RelationMorphism : Relation_Arrow RelationRecord where
     (recMap: source -> target) ->
     (recCongr: (x, y: source) ->
                (x ~> y) -> (recMap x ~> recMap y)) ->
-    RelationMorphism (MkRelation source %instance) 
-                     (MkRelation target %instance)
+    RelationMorphism (mkRelation {ob = source}) 
+                     (mkRelation {ob = target})
 
 instance RelationClass RelationRecord where
   (~>) = RelationMorphism
 
 RelationRelation : RelationRecord
-RelationRelation = MkRelation RelationRecord %instance
+RelationRelation = mkRelation {ob = RelationRecord}
 
 recMap : {rSource, rTarget: RelationRecord} ->
          rSource ~> rTarget ->

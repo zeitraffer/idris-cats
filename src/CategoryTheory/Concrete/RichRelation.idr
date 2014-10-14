@@ -15,6 +15,9 @@ record RichRelationRecord : Type -> Type where
     (recInstance: RichRelationClass over recOb) ->
     RichRelationRecord over
 
+mkRichRelation : (RichRelationClass over ob) => RichRelationRecord over
+mkRichRelation {over} {ob} = MkRichRelation ob %instance
+
 instance ObClass (RichRelationRecord over) where
   Ob = recOb
 

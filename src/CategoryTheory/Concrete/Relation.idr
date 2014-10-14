@@ -14,6 +14,9 @@ record RelationRecord : Type where
     (recInstance: RelationClass recOb) ->
     RelationRecord
 
+mkRelation : (RelationClass ob) => RelationRecord
+mkRelation {ob} = MkRelation ob %instance
+
 instance ObClass RelationRecord where
   Ob = recOb
 

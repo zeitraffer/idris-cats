@@ -14,4 +14,4 @@ instance RelationClass (RelationMorphism rSource rTarget) where
 
 RelationMorphismRelation : RelationRecord ->> RelationRecord
 RelationMorphismRelation rSource rTarget = 
-  MkRelation (RelationMorphism rSource rTarget) %instance
+  mkRelation {ob = RelationMorphism rSource rTarget}

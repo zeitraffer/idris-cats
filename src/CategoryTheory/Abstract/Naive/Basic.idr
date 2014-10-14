@@ -74,5 +74,7 @@ mutual
       (e : Equality m m') -> (f : Equality n n') ->
       Equality (MultiplyMorphism m n) (MultiplyMorphism m' n')
 
+-- TODO: neutrality, associativity
+
   }
 

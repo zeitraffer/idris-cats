@@ -8,9 +8,9 @@ infix class :>, ~>
 
 structure 
   Relation 
-    (obj : Type) 
+    (ob : Type) 
   where
-    (~>) : obj ->> Type
+    (~>) : ob ->> Type
 
 implicit Type : Relation 
 implicit Relation : Relation
@@ -19,9 +19,9 @@ implicit RelationMorphism : Relation
 structure 
   RichRelation 
     (over : Type)
-    (obj : over)
+    (ob : over)
   where
-    (:>) : obj ->> over
+    (:>) : ob ->> over
 
 implicit Type : RichRelation Type
 implicit Relation : RichRelation Relation
@@ -30,14 +30,14 @@ implicit RichRelation over : Relation over -> Relation
 signature Monoid0
     (class carrier : Type)
   where
-    one/(1) : carrier
+    unit/(1) : carrier
     product/(#) : (carrier, carrier) -> carrier
 
 implicit Type : Monoid0
 implicit Relation : Monoid0
 implicit (over : Monoid) => RichRelation over : Monoid0
-?implicit Monoid0 : Relation
-?implicit Monoid0 : Monoid0
+?implicit Monoid0 : Relation -- trivial
+?implicit Monoid0 : Monoid0 
 
 signature
   (Relation Type, Monoid0 Type, Relation ob) =>
@@ -45,17 +45,20 @@ signature
     (class ob : Type) 
   where
     Id : {o : ob} -> 
-      one ~> (o~>o)      
+      unit -> (o~>o)      
     Mul : {o1, o2, o3 : ob} -> 
-      (o1~>o2) # (o2~>o3) ~> (o1~>o3)
+      (o1~>o2) # (o2~>o3) -> (o1~>o3)
 
 ?implicit Type : Category0
 ?implicit Relation : Category0
 ?implicit RichRelation : Category0
 ?implicit Monoid0 : Category0
+?implicit Category0 : Relation
+?implicit Category0 : RichRelation Category0
+?implicit Category0 : Monoid0
 ?implicit Category0 : Category0
 
-!Category0 ==> Monoid0
+!Monoid0 ==> Category0
   
 signature 
   (Relation over, Monoid0 over, RichRelation over ob) =>
@@ -64,9 +67,9 @@ signature
     (class ob : Type) 
   where
     RId : {o : ob} -> 
-      1 ~> (o~>o)      
+      unit ~> (o:>o)      
     RMul : {o1, o2, o3 : ob} -> 
-      (o1~>o2) # (o2~>o3) ~> (o1~>o3)
+      (o1:>o2) # (o2:>o3) ~> (o1:>o3)
   
 signature 
   (Relation Type, Category0 ob) => 
@@ -74,16 +77,16 @@ signature
     (class ob : Type) 
   where
     Inv : {o1, o2 : ob} -> 
-      (o1~>o2) ~> (o2~>o1)
+      (o1~>o2) -> (o2~>o1)
 
 signature 
   (Relation over, RichCategory0 over ob) => 
-  Groupoid0
+  RichGroupoid0
     {over : Type}
     (class ob : Type) 
   where
     Inv : {o1, o2 : ob} -> 
-      (o1~>o2) ~> (o2~>o1)
+      (o1:>o2) ~> (o2:>o1)
 
 implicit Groupoid0 : Relation
 implicit Groupoid0 : Monoid
@@ -97,4 +100,4 @@ signature
     IdNeutralLeft : 
       {o1, o2 : ob} ->
       (m : o1 ~> o2) :~> (1 >>> m ~> m)
-
+  -- ...

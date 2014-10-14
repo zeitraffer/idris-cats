@@ -24,6 +24,9 @@ record Monoid0Record : Type where
     (recInstance: Monoid0Class recCarrier) -> 
     Monoid0Record
 
+mkMonoid0 : (Monoid0Class carrier) => Monoid0Record
+mkMonoid0 {carrier} = MkMonoid0 carrier %instance
+
 instance ObClass Monoid0Record where
   Ob = recCarrier    
 

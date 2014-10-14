@@ -17,7 +17,7 @@ instance
     (:>) = UnitRichMorphism
 
 UnitRichRelation : (Monoid0Class over) => Monoid0_Unit (RichRelationRecord over)
-UnitRichRelation {over} () = MkRichRelation (UnitOver over) %instance
+UnitRichRelation {over} _ = mkRichRelation {ob = UnitOver over}
 
 ProductRichMorphism : 
     (Monoid0Class over, RichRelationClass over left, RichRelationClass over right) => 
@@ -32,14 +32,13 @@ instance
     (:>) = ProductRichMorphism
 
 ProductRichRelation' : 
-  ( Monoid0Class over, 
-    RichRelationClass over left, RichRelationClass over right ) => 
-    RichRelationRecord over
-ProductRichRelation' {left} {right} = MkRichRelation (left # right) %instance
+  (RichRelationClass over left, RichRelationClass over right, Monoid0Class over) => 
+  RichRelationRecord over
+ProductRichRelation' {left} {right} = mkRichRelation {ob = left # right}
 
 ProductRichRelation : (Monoid0Class over) => Monoid0_Product (RichRelationRecord over)
 ProductRichRelation (rLeft, rRight) = 
-  ProductRichRelation' @{%instance} @{recInstance rLeft} @{recInstance rRight}
+  ProductRichRelation' @{recInstance rLeft} @{recInstance rRight}
 
 instance 
     (Monoid0Class over) => 
@@ -49,7 +48,8 @@ instance
     getProduct0 = ProductRichRelation
 
 RichRelationMonoid0' : (Monoid0Class over) => Monoid0Record
-RichRelationMonoid0' {over} = MkMonoid0 (RichRelationRecord over) %instance
+RichRelationMonoid0' {over} = mkMonoid0 {carrier = RichRelationRecord over}
 
 RichRelationMonoid0 : Monoid0Record -> Monoid0Record
 RichRelationMonoid0 mOver = RichRelationMonoid0' @{recInstance mOver}
+

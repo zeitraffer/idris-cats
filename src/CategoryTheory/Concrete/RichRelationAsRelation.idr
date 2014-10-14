@@ -14,9 +14,9 @@ data
       (recMap: source -> target) ->
       (recCongr: (x, y: source) ->
                  (x :> y) ~> (recMap x :> recMap y)) ->
-      RichRelationMorphism (MkRelation over %instance)
-                           (MkRichRelation source %instance) 
-                           (MkRichRelation target %instance)
+      RichRelationMorphism (mkRelation {ob = over})
+                           (mkRichRelation {ob = source}) 
+                           (mkRichRelation {ob = target})
 
 recMap : RichRelationMorphism rOver rSource rTarget ->
          |rSource| -> |rTarget|
@@ -37,10 +37,10 @@ instance Apply0Class (RichRelationMorphism rOver rSource rTarget)
 instance (RelationClass over) => 
          RelationClass (RichRelationRecord over) 
   where
-    (~>) = RichRelationMorphism (MkRelation over %instance)
+    (~>) = RichRelationMorphism (mkRelation {ob = over})
 
 RichRelationRelation' : (RelationClass over) => RelationRecord
-RichRelationRelation' {over} = MkRelation (RichRelationRecord over) %instance
+RichRelationRelation' {over} = mkRelation {ob = RichRelationRecord over}
 
 RichRelationRelation : RelationRecord -> RelationRecord
 RichRelationRelation rOver = RichRelationRelation' @{recInstance rOver}

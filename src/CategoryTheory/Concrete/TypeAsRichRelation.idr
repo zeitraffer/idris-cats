@@ -7,5 +7,5 @@ instance RichRelationClass Type Type where
   (:>) = TypeMorphism
 
 TypeRichRelation : RichRelationRecord Type
-TypeRichRelation = MkRichRelation Type %instance
+TypeRichRelation = mkRichRelation {ob = Type}
 

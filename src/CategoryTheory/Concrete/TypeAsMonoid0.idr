@@ -13,7 +13,7 @@ instance Monoid0Class Type where
   getProduct0 = ProductType
 
 TypeMonoid0 : Monoid0Record
-TypeMonoid0 = MkMonoid0 Type %instance
+TypeMonoid0 = mkMonoid0 {carrier = Type}
 
 (&) : left -> right -> (left # right)
 l & r = (l, r)

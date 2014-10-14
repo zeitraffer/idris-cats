@@ -25,6 +25,9 @@ record Category0Record : Type where
 instance ObClass Category0Record where
   Ob = recOb
 
+mkCategory0 : (Category0Class ob to) => Category0Record
+mkCategory0 {ob} {to} = MkCategory0 ob to %instance
+
 -- identity with implicit index
 id : (Category0Class ob to) => {o: ob} -> 
     (o `to` o)

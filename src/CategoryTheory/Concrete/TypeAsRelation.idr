@@ -15,5 +15,5 @@ instance RelationClass Type where
   (~>) = TypeMorphism
 
 TypeRelation : RelationRecord
-TypeRelation = MkRelation Type %instance
+TypeRelation = mkRelation {ob = Type}
 
