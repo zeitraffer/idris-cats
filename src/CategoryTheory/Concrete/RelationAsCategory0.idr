@@ -9,7 +9,7 @@ import CategoryTheory.Concrete.RelationAsRelation
 ------------------------------------------------------------
 
 instance 
-    Category0Class RelationRecord (~>) 
+    Category0FullClass RelationRecord (~>) 
   where
 
     getIdentity0 _ _ = MkRelationMorphism 
@@ -20,6 +20,6 @@ instance
         ((recMap mor23) . (recMap mor12))
         (\_,_ => (recFunctor mor23 _ _) . (recFunctor mor12 _ _))
 
-RelationCategory0 : Category0Record
+RelationCategory0 : Category0FullRecord
 RelationCategory0 = mkCategory0 {ob = RelationRecord}
 

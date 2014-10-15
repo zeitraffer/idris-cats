@@ -32,6 +32,6 @@ mkEnrichedRelation {over} {ob} = MkEnrichedRelation ob %instance
 instance ObClass (EnrichedRelationRecord over) where
   Ob = recOb
 
-EnrichedHom : (relation: EnrichedRelationRecord over) -> EnrichedRelation_Arrow over |relation|
-EnrichedHom relation = (:>) @{recInstance relation}
+Hom : (relation: EnrichedRelationRecord over) -> EnrichedRelation_Arrow over |relation|
+Hom relation = (:>) @{recInstance relation}
 

@@ -8,30 +8,34 @@ import CategoryTheory.Concrete.EnrichedRelationAsRelation
 
 ------------------------------------------------------------
 
-{-
-
 instance 
-    (RelationClass over, Category0Class over (~>)) => 
-    Category0Class (EnrichedRelationRecord over) (~>) 
+    (Category0ShortClass over) =>
+    Category0FullClass (EnrichedRelationRecord over) (~>) 
   where
 
-    getIdentity0 {over} (MkEnrichedRelation oOb oInst) _ 
-      = MkEnrichedRelationMorphism @{%instance} @{oInst} @{oInst} 
+    getIdentity0 {over} rel ()
+      = MkEnrichedRelationMorphism 
         id 
-        (\_, _ => jd {to = (~>)} {o = (:>) @{oInst} _ _})
+        (\x,y => getIdentity0 
+                 {ob = over} {to = (~>)} -- FIXME this should be inferred
+                 (Hom rel x y) 
+                 ())
 
-    getMultiply0 (MkEnrichedRelation o1Ob o1Inst) 
-                 (MkEnrichedRelation o2Ob o2Inst) 
-                 (MkEnrichedRelation o3Ob o3Inst) 
-        ((MkEnrichedRelationMorphism map12 congr12) & 
-         (MkEnrichedRelationMorphism map23 congr23)) 
-      = MkEnrichedRelationMorphism @{%instance} @{o1Inst} @{o3Inst} 
+    getMultiply0 {over} rel1 rel2 rel3 
+        ((MkEnrichedRelationMorphism map12 functor12) & 
+         (MkEnrichedRelationMorphism map23 functor23)) 
+      = MkEnrichedRelationMorphism 
         (map23 . map12)
-        (\_,_ => (congr12 _ _) >>> (congr23 _ _)) 
+        (\x,y => getMultiply0 
+                 {ob = over} {to = (~>)} -- FIXME this should be inferred
+                 (Hom rel1 x y) 
+                 (Hom rel2 (map12 x) (map12 y)) 
+                 (Hom rel3 (map23 (map12 x)) (map23 (map12 y)))
+                 ((functor12 x y) & (functor23 (map12 x) (map12 y)))) 
 
-EnrichedRelationCategory0' : 
-  (RelationClass over, Category0Class over (~>)) => 
-  Category0Record
+EnrichedRelationCategory0' : (Category0ShortClass over) => Category0FullRecord
 EnrichedRelationCategory0' {over} = mkCategory0 {ob = EnrichedRelationRecord over}
 
--}
+--EnrichedRelationCategory0 : Category0FullRecord -> Category0FullRecord
+--EnrichedRelationCategory0 rOver = 
+
