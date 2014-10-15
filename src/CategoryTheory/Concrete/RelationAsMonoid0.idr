@@ -36,8 +36,15 @@ data
     MkProductMorphism : 
       {rLeft, rRight: RelationRecord} -> 
       {source, target: |rLeft| # |rRight| } ->
-      IsProductMorphism rLeft rRight source target ->
+      (recMor: IsProductMorphism rLeft rRight source target) ->
       ProductMorphism rLeft rRight source target                      
+
+recMor : 
+  {rLeft, rRight: RelationRecord} -> 
+  {source, target: |rLeft| # |rRight| } ->
+  ProductMorphism rLeft rRight source target ->
+  IsProductMorphism rLeft rRight source target
+recMor (MkProductMorphism mor) = mor
 
 instance (RelationClass left, RelationClass right) => 
          RelationClass (left # right) 

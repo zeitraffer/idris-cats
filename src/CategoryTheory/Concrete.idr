@@ -24,4 +24,3 @@ import CategoryTheory.Concrete.RelationAsCategory0
 import CategoryTheory.Concrete.RichRelationAsCategory0
 
 -- Rich=>Enriched
--- avoid dependent records

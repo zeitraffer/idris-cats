@@ -23,11 +23,17 @@ unit = getUnit0 ()
 (#) : (Monoid0Class carrier) => carrier -> carrier -> carrier
 left # right = getProduct0 (left, right)
 
-record Monoid0Record : Type where
+data Monoid0Record : Type where
   MkMonoid0 : 
     (recCarrier: Type) -> 
     (recInstance: Monoid0Class recCarrier) -> 
     Monoid0Record
+
+recCarrier : Monoid0Record -> Type
+recCarrier (MkMonoid0 carrier inst) = carrier
+
+recInstance : (rec: Monoid0Record) -> Monoid0Class (recCarrier rec)
+recInstance (MkMonoid0 carrier inst) = inst
 
 mkMonoid0 : (Monoid0Class carrier) => Monoid0Record
 mkMonoid0 {carrier} = MkMonoid0 carrier %instance

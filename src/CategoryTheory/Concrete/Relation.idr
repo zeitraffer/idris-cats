@@ -13,11 +13,17 @@ Relation_Arrow ob = ob ->> Type
 class RelationClass (ob: Type) where
   (~>) : Relation_Arrow ob
 
-record RelationRecord : Type where
+data RelationRecord : Type where
   MkRelation : 
     (recOb: Type) ->
     (recInstance: RelationClass recOb) ->
     RelationRecord
+
+recOb : RelationRecord -> Type
+recOb (MkRelation ob inst) = ob
+
+recInstance : (rec: RelationRecord) -> RelationClass (recOb rec)
+recInstance (MkRelation ob inst) = inst
 
 mkRelation : (RelationClass ob) => RelationRecord
 mkRelation {ob} = MkRelation ob %instance

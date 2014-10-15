@@ -24,12 +24,21 @@ class
     getIdentity0 : Category0_Identity ob to
     getMultiply0 : Category0_Multiply ob to
 
-record Category0Record : Type where
+data Category0Record : Type where
   MkCategory0 : 
     (recOb: Type) -> 
     (recTo: recOb ->> Type) -> 
     (recInstance: Category0Class recOb recTo) -> 
     Category0Record
+
+recOb : Category0Record -> Type
+recOb (MkCategory0 ob to inst) = ob
+
+recTo : (rec: Category0Record) -> recOb rec ->> Type
+recTo (MkCategory0 ob to inst) = to
+
+recInstance : (rec: Category0Record) -> Category0Class (recOb rec) (recTo rec)
+recInstance (MkCategory0 ob to inst) = inst
 
 instance ObClass Category0Record where
   Ob = recOb
