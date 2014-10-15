@@ -25,7 +25,7 @@ structure
     Mul : {o1, o2, o3 : ob} -> Mor o1 o2 -> Mor o2 o3 ~> Mor o1 o3
   
 signature 
-  RichCategory0
+  EnrichedCategory0
     {over = Setoid}
     (ob : Type) 
     (Hom : ob ->> Setoid = (Mor, Equ)) 
@@ -52,7 +52,7 @@ signature
 -- instance Setoid (1, #, ~>)
 
 signature 
-  (RichCategory0 ob (~>)) =>
+  (EnrichedCategory0 ob (~>)) =>
   Category1
     (class ob : Type) 
     (implicit class (~>) : ob ->> Setoid)

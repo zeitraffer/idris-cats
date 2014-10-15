@@ -17,15 +17,15 @@ implicit Relation : Relation
 implicit RelationMorphism : Relation
 
 structure 
-  RichRelation 
+  EnrichedRelation 
     (over : Type)
     (ob : over)
   where
     (:>) : ob ->> over
 
-implicit Type : RichRelation Type
-implicit Relation : RichRelation Relation
-implicit RichRelation over : Relation over -> Relation 
+implicit Type : EnrichedRelation Type
+implicit Relation : EnrichedRelation Relation
+implicit EnrichedRelation over : Relation over -> Relation 
 
 signature Monoid0
     (class carrier : Type)
@@ -35,7 +35,7 @@ signature Monoid0
 
 implicit Type : Monoid0
 implicit Relation : Monoid0
-implicit (over : Monoid) => RichRelation over : Monoid0
+implicit (over : Monoid) => EnrichedRelation over : Monoid0
 implicit Monoid0 : Relation -- trivial
 implicit Monoid0 : Monoid0 
 
@@ -51,18 +51,18 @@ signature
 
 implicit Type : Category0
 implicit Relation : Category0
-implicit RichRelation : Category0
+implicit EnrichedRelation : Category0
 ?implicit Monoid0 : Category0
 ?implicit Category0 : Relation
-?implicit Category0 : RichRelation Category0
+?implicit Category0 : EnrichedRelation Category0
 ?implicit Category0 : Monoid0
 ?implicit Category0 : Category0
 
 !Monoid0 ==> Category0
   
 signature 
-  (Relation over, Monoid0 over, RichRelation over ob) =>
-  RichCategory0
+  (Relation over, Monoid0 over, EnrichedRelation over ob) =>
+  EnrichedCategory0
     {over : Type}
     (class ob : Type) 
   where
@@ -80,8 +80,8 @@ signature
       (o1~>o2) -> (o2~>o1)
 
 signature 
-  (Relation over, RichCategory0 over ob) => 
-  RichGroupoid0
+  (Relation over, EnrichedCategory0 over ob) => 
+  EnrichedGroupoid0
     {over : Type}
     (class ob : Type) 
   where
@@ -92,7 +92,7 @@ implicit Groupoid0 : Relation
 implicit Groupoid0 : Monoid
 
 signature 
-  (RichCategory0 ob (~>)) =>
+  (EnrichedCategory0 ob (~>)) =>
   Category1
     (class ob : Type) 
     (implicit class (~>) : ob ->> Setoid)
