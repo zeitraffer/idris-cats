@@ -10,9 +10,9 @@ import CategoryTheory.Concrete.Monoid0
 
 data Monoid0Morphism : Relation_Arrow Monoid0Record where
   MkMonoid0Mor : 
-    (Monoid0Class source, Monoid0Class target) =>
-    (recMor: source -> target) ->
-    Monoid0Morphism (mkMonoid0 {carrier = source}) (mkMonoid0 {carrier = target})
+    {mSource, mTarget: Monoid0Record} ->
+    (recMor: |mSource| -> |mTarget| ) ->
+    Monoid0Morphism mSource mTarget
 
 recMor : 
   {mSource, mTarget: Monoid0Record} ->
