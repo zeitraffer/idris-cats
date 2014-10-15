@@ -8,21 +8,17 @@ import CategoryTheory.Concrete.RelationAsRelation
 
 ------------------------------------------------------------
 
-instance Category0Class RelationRecord (~>) where
+instance 
+    Category0Class RelationRecord (~>) 
+  where
 
-  getIdentity0 (MkRelation oOb oInst) _ 
-    = MkRelationMorphism @{oInst} @{oInst} 
+    getIdentity0 _ _ = MkRelationMorphism 
         id 
-        (\x, y => id)
+        (\_,_ => id)
 
-  getMultiply0 (MkRelation o1Ob o1Inst) 
-               (MkRelation o2Ob o2Inst) 
-               (MkRelation o3Ob o3Inst) 
-      ((MkRelationMorphism map12 congr12) & 
-       (MkRelationMorphism map23 congr23)) 
-    = MkRelationMorphism @{o1Inst} @{o3Inst} 
-        (map23 . map12)
-        (\x, y => (congr23 _ _) . (congr12 _ _))
+    getMultiply0 _ _ _ (mor12 & mor23) = MkRelationMorphism
+        ((recMap mor23) . (recMap mor12))
+        (\_,_ => (recFunctor mor23 _ _) . (recFunctor mor12 _ _))
 
 RelationCategory0 : Category0Record
 RelationCategory0 = mkCategory0 {ob = RelationRecord}

@@ -19,4 +19,9 @@ import CategoryTheory.Concrete.Monoid0AsRelation
 import CategoryTheory.Concrete.Monoid0AsMonoid0
 
 import CategoryTheory.Concrete.Category0
+import CategoryTheory.Concrete.TypeAsCategory0
+import CategoryTheory.Concrete.RelationAsCategory0
+import CategoryTheory.Concrete.RichRelationAsCategory0
 
+-- Rich=>Enriched
+-- avoid dependent records

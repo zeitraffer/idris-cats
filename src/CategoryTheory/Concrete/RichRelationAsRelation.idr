@@ -8,30 +8,45 @@ import CategoryTheory.Concrete.RichRelation
 
 ------------------------------------------------------------
 
+IsRichFunctor0' : 
+  (RelationClass over, RichRelationClass over source, RichRelationClass over target) =>
+  (source -> target) -> Type
+IsRichFunctor0' {source} f =
+    (x, y: source) ->
+    (x :> y) ~> (f x :> f y)
+
+IsRichFunctor0 : 
+  (rOver: RelationRecord) ->
+  (rSource, rTarget: RichRelationRecord |rOver|) ->
+  ( |rSource| -> |rTarget| ) -> Type
+IsRichFunctor0 rOver rSource rTarget = 
+    IsRichFunctor0' @{recInstance rOver} @{recInstance rSource} @{recInstance rTarget}
+
 data 
   RichRelationMorphism : 
     (rOver: RelationRecord) -> 
     Relation_Arrow (RichRelationRecord |rOver| ) 
   where
     MkRichRelationMorphism : 
-      ( RelationClass over, 
-        RichRelationClass over source, RichRelationClass over target ) =>
-      (recMap: source -> target) ->
-      (recCongr: (x, y: source) ->
-                 (x :> y) ~> (recMap x :> recMap y)) ->
-      RichRelationMorphism (mkRelation {ob = over})
-                           (mkRichRelation {ob = source}) 
-                           (mkRichRelation {ob = target})
+      {rOver: RelationRecord} ->
+      {rSource, rTarget: RichRelationRecord |rOver|} ->
+      (recMap: |rSource| -> |rTarget| ) ->
+      (recFunctor: IsRichFunctor0 rOver rSource rTarget recMap) ->
+      RichRelationMorphism rOver rSource rTarget
 
-recMap : RichRelationMorphism rOver rSource rTarget ->
-         |rSource| -> |rTarget|
-recMap (MkRichRelationMorphism map congr) = map
+recMap : 
+  {rOver: RelationRecord} ->
+  {rSource, rTarget: RichRelationRecord |rOver|} ->
+  RichRelationMorphism rOver rSource rTarget ->
+  |rSource| -> |rTarget|
+recMap (MkRichRelationMorphism map functor) = map
 
-recCongr : (f: RichRelationMorphism rOver rSource rTarget) ->
-           (x, y: |rSource| ) ->
-           Hom rOver (RichHom rSource x y)
-                     (RichHom rTarget (recMap f x) (recMap f y))
-recCongr (MkRichRelationMorphism map congr) = congr
+recFunctor : 
+  {rOver: RelationRecord} ->
+  {rSource, rTarget: RichRelationRecord |rOver|} ->
+  (map: RichRelationMorphism rOver rSource rTarget) ->
+  IsRichFunctor0 rOver rSource rTarget (recMap map)
+recFunctor (MkRichRelationMorphism map functor) = functor
 
 instance Apply0Class (RichRelationMorphism rOver rSource rTarget) 
                      ( |rSource| ) 
@@ -39,8 +54,9 @@ instance Apply0Class (RichRelationMorphism rOver rSource rTarget)
   where
     ($) = recMap
 
-instance (RelationClass over) => 
-         RelationClass (RichRelationRecord over) 
+instance 
+    (RelationClass over) => 
+    RelationClass (RichRelationRecord over) 
   where
     (~>) = RichRelationMorphism (mkRelation {ob = over})
 

@@ -1,6 +1,8 @@
 module CategoryTheory.Concrete.Category0
 
+import CategoryTheory.Concrete.Relation
 import CategoryTheory.Concrete.TypeAsRelation
+import CategoryTheory.Concrete.Monoid0
 import CategoryTheory.Concrete.TypeAsMonoid0
 
 %access public
@@ -16,9 +18,11 @@ Category0_Multiply : (ob: Type) -> (to: ob ->> Type) -> Type
 Category0_Multiply ob to = (o1, o2, o3 : ob) -> 
     (o1 `to` o2) # (o2 `to` o3) -> (o1 `to` o3)
 
-class Category0Class (ob: Type) (to: ob ->> Type) where
-  getIdentity0 : Category0_Identity ob to
-  getMultiply0 : Category0_Multiply ob to
+class 
+    Category0Class (ob: Type) (to: ob ->> Type) 
+  where
+    getIdentity0 : Category0_Identity ob to
+    getMultiply0 : Category0_Multiply ob to
 
 record Category0Record : Type where
   MkCategory0 : 
