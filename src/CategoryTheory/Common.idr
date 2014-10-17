@@ -5,7 +5,7 @@ module CategoryTheory.Common
 
 ------------------------------------------------------------
 
-infixr 1 ->>, ~>, :>, +>
+infixr 1 ->>, ~>, ~~>, :>, +>
 infixl 15 $, $~
 infixl 9 #, &, >>>              
 
@@ -43,7 +43,4 @@ class
   where
     ($~) : {xSource, xTarget: obSource} -> 
       (m: map) -> (xSource `toSource` xTarget) -> ((m $ xSource)`toTarget`(m $ xTarget))
-
-liftUnit : {t: Type} -> t -> () -> t
-liftUnit x = \ _ => x
 

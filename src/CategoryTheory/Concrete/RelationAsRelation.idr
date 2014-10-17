@@ -1,5 +1,7 @@
 module CategoryTheory.Concrete.RelationAsRelation
 
+------------------------------------------------------------
+
 import CategoryTheory.Concrete.Relation
 
 %access public
@@ -16,8 +18,8 @@ IsFunctor0 rSource rTarget = IsFunctor0' @{recInstance rSource} @{recInstance rT
 data RelationMorphism : Relation_Arrow RelationRecord where
   MkRelationMorphism : 
     {rSource, rTarget: RelationRecord} ->
-    (recMap: |rSource| -> |rTarget|) ->
-    (recFunctor: IsFunctor0 rSource rTarget recMap) ->
+    (map: |rSource| -> |rTarget|) ->
+    IsFunctor0 rSource rTarget map ->
     RelationMorphism rSource rTarget
 
 instance RelationClass RelationRecord where

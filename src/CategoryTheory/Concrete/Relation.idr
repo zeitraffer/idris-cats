@@ -1,5 +1,7 @@
 module CategoryTheory.Concrete.Relation
 
+------------------------------------------------------------
+
 import CategoryTheory.Common
 
 %access public
@@ -15,8 +17,8 @@ class RelationClass (ob: Type) where
 
 data RelationRecord : Type where
   MkRelation : 
-    (recOb: Type) ->
-    (recInstance: RelationClass recOb) ->
+    (ob: Type) ->
+    RelationClass ob ->
     RelationRecord
 
 recOb : RelationRecord -> Type

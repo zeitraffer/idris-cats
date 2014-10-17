@@ -1,5 +1,7 @@
 module CategoryTheory.Concrete.TypeAsCategory0
 
+------------------------------------------------------------
+
 import CategoryTheory.Concrete.Category0
 import CategoryTheory.Concrete.TypeAsMonoid0
 

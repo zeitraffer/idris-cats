@@ -1,5 +1,7 @@
 module CategoryTheory.Concrete.TypeAsMonoid0
 
+------------------------------------------------------------
+
 import CategoryTheory.Concrete.Monoid0
 
 %access public

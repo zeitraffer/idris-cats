@@ -1,5 +1,7 @@
 module CategoryTheory.Concrete.EnrichedRelationAsCategory0
 
+------------------------------------------------------------
+
 import CategoryTheory.Concrete.Category0
 import CategoryTheory.Concrete.EnrichedRelationAsRelation
 

@@ -1,5 +1,7 @@
 module CategoryTheory.Concrete.RelationMorphismAsRelation
 
+------------------------------------------------------------
+
 import CategoryTheory.Concrete.RelationAsRelation
 
 %access public

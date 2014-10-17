@@ -1,5 +1,7 @@
 module CategoryTheory.Concrete.EnrichedRelation
 
+------------------------------------------------------------
+
 import CategoryTheory.Common
 
 %access public
@@ -16,8 +18,8 @@ class EnrichedRelationClass (over: Type) (ob: Type) where
 data EnrichedRelationRecord : Type -> Type where
   MkEnrichedRelation : 
     {over: Type} ->
-    (recOb: Type) ->
-    (recInstance: EnrichedRelationClass over recOb) ->
+    (ob: Type) ->
+    EnrichedRelationClass over ob ->
     EnrichedRelationRecord over
 
 recOb : {over: Type} -> EnrichedRelationRecord over -> Type

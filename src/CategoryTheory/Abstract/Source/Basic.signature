@@ -30,7 +30,7 @@ implicit EnrichedRelation over : Relation over -> Relation
 signature Monoid0
     (class carrier : Type)
   where
-    unit/(1) : carrier
+    unit/(1) : () -> carrier
     product/(#) : (carrier, carrier) -> carrier
 
 implicit Type : Monoid0
@@ -58,6 +58,8 @@ implicit EnrichedRelation : Category0
 ?implicit Category0 : Monoid0
 ?implicit Category0 : Category0
 
+!DualCat
+!PathCat
 !Monoid0 ==> Category0
   
 signature 

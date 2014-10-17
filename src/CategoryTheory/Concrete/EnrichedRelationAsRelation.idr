@@ -1,5 +1,7 @@
 module CategoryTheory.Concrete.EnrichedRelationAsRelation
 
+------------------------------------------------------------
+
 import CategoryTheory.Concrete.Relation
 import CategoryTheory.Concrete.EnrichedRelation
 
@@ -30,8 +32,8 @@ data
     MkEnrichedRelationMorphism : 
       {rOver: RelationRecord} ->
       {rSource, rTarget: EnrichedRelationRecord |rOver|} ->
-      (recMap: |rSource| -> |rTarget| ) ->
-      (recFunctor: IsEnrichedFunctor0 rOver rSource rTarget recMap) ->
+      (map: |rSource| -> |rTarget| ) ->
+      IsEnrichedFunctor0 rOver rSource rTarget map ->
       EnrichedRelationMorphism rOver rSource rTarget
 
 recMap : 

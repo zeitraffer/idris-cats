@@ -1,5 +1,7 @@
 module CategoryTheory.Concrete.Monoid0AsRelation
 
+------------------------------------------------------------
+
 import CategoryTheory.Concrete.Relation
 import CategoryTheory.Concrete.Monoid0
 
@@ -11,7 +13,7 @@ import CategoryTheory.Concrete.Monoid0
 data Monoid0Morphism : Relation_Arrow Monoid0Record where
   MkMonoid0Mor : 
     {mSource, mTarget: Monoid0Record} ->
-    (recMor: |mSource| -> |mTarget| ) ->
+    ( |mSource| -> |mTarget| ) ->
     Monoid0Morphism mSource mTarget
 
 recMor : 

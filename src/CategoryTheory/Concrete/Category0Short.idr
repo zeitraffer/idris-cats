@@ -1,5 +1,7 @@
 module CategoryTheory.Concrete.Category0Short
 
+------------------------------------------------------------
+
 import CategoryTheory.Concrete.Category0Full
 
 %access public
@@ -13,14 +15,14 @@ class
   where {}
 
 instance 
-    (RelationClass ob, Category0FullClass ob (~>)) =>
+    (RelationClass ob, Category0FullClass ob (~>)) => 
     Category0ShortClass ob
   where {}
 
 data Category0ShortRecord : Type where
   MkCategory0Short :
-    (recOb: Type) -> 
-    (recInstance: Category0ShortClass recOb) -> 
+    (ob: Type) -> 
+    Category0ShortClass ob -> 
     Category0ShortRecord
 
 recOb : Category0ShortRecord -> Type

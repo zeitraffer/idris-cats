@@ -1,5 +1,7 @@
 module CategoryTheory.Concrete.RelationAsMonoid0
 
+------------------------------------------------------------
+
 import CategoryTheory.Concrete.Monoid0
 import CategoryTheory.Concrete.Relation
 import CategoryTheory.Concrete.TypeAsMonoid0
@@ -36,7 +38,7 @@ data
     MkProductMorphism : 
       {rLeft, rRight: RelationRecord} -> 
       {source, target: |rLeft| # |rRight| } ->
-      (recMor: IsProductMorphism rLeft rRight source target) ->
+      IsProductMorphism rLeft rRight source target ->
       ProductMorphism rLeft rRight source target                      
 
 recMor : 

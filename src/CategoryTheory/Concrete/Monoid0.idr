@@ -1,5 +1,7 @@
 module CategoryTheory.Concrete.Monoid0
 
+------------------------------------------------------------
+
 import CategoryTheory.Common
 
 %access public
@@ -25,8 +27,8 @@ left # right = getProduct0 (left, right)
 
 data Monoid0Record : Type where
   MkMonoid0 : 
-    (recCarrier: Type) -> 
-    (recInstance: Monoid0Class recCarrier) -> 
+    (carrier: Type) -> 
+    Monoid0Class carrier -> 
     Monoid0Record
 
 recCarrier : Monoid0Record -> Type

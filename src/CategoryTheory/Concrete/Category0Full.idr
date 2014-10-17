@@ -1,5 +1,7 @@
 module CategoryTheory.Concrete.Category0Full
 
+------------------------------------------------------------
+
 import CategoryTheory.Concrete.Relation
 import CategoryTheory.Concrete.TypeAsRelation
 import CategoryTheory.Concrete.Monoid0
@@ -10,13 +12,13 @@ import CategoryTheory.Concrete.TypeAsMonoid0
 
 ------------------------------------------------------------
 
-Category0_Identity : (ob: Type) -> (to: ob ->> Type) -> Type
-Category0_Identity ob to = (o: ob) -> 
-    unit -> (o `to` o)
+Category0_Identity : (ob: Type) -> (ob ->> Type) -> Type
+Category0_Identity ob (~~>) = (o: ob) -> 
+    unit -> (o ~~> o)
 
-Category0_Multiply : (ob: Type) -> (to: ob ->> Type) -> Type
-Category0_Multiply ob to = (o1, o2, o3 : ob) -> 
-    (o1 `to` o2) # (o2 `to` o3) -> (o1 `to` o3)
+Category0_Multiply : (ob: Type) -> (ob ->> Type) -> Type
+Category0_Multiply ob (~~>) = (o1, o2, o3 : ob) -> 
+    (o1 ~~> o2) # (o2 ~~> o3) -> (o1 ~~> o3)
 
 class 
     Category0FullClass (ob: Type) (to: ob ->> Type) 
@@ -26,9 +28,9 @@ class
 
 data Category0FullRecord : Type where
   MkCategory0Full : 
-    (recOb: Type) -> 
-    (recTo: recOb ->> Type) -> 
-    (recInstance: Category0FullClass recOb recTo) -> 
+    (ob: Type) -> 
+    (to: ob ->> Type) -> 
+    Category0FullClass ob to -> 
     Category0FullRecord
 
 recOb : Category0FullRecord -> Type

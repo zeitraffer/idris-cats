@@ -1,5 +1,7 @@
 module CategoryTheory.Concrete.EnrichedRelationAsMonoid0
 
+------------------------------------------------------------
+
 import CategoryTheory.Concrete.Monoid0
 import CategoryTheory.Concrete.EnrichedRelation
 import CategoryTheory.Concrete.TypeAsMonoid0
@@ -36,7 +38,9 @@ ProductEnrichedRelation' :
   EnrichedRelationRecord over
 ProductEnrichedRelation' {left} {right} = mkEnrichedRelation {ob = left # right}
 
-ProductEnrichedRelation : (rOver: Monoid0Record) -> Monoid0_Product (EnrichedRelationRecord |rOver| )
+ProductEnrichedRelation : 
+  (rOver: Monoid0Record) -> 
+  Monoid0_Product (EnrichedRelationRecord |rOver| )
 ProductEnrichedRelation rOver (rLeft, rRight) = 
   ProductEnrichedRelation' @{recInstance rLeft} @{recInstance rRight} @{recInstance rOver}
 
