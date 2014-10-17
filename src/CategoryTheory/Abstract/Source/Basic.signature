@@ -54,7 +54,7 @@ implicit Relation : Category0
 implicit EnrichedRelation : Category0
 ?implicit Monoid0 : Category0
 ?implicit Category0 : Relation
-?implicit Category0 : EnrichedRelation Category0
+?implicit Category0 : EnrichedRelation Category0 ???
 ?implicit Category0 : Monoid0
 ?implicit Category0 : Category0
 

@@ -23,4 +23,7 @@ import CategoryTheory.Concrete.TypeAsCategory0
 import CategoryTheory.Concrete.RelationAsCategory0
 import CategoryTheory.Concrete.EnrichedRelationAsCategory0
 
+%access public
+%default total
 
+------------------------------------------------------------

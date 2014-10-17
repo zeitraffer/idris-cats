@@ -8,13 +8,13 @@ import CategoryTheory.Concrete.Relation
 ------------------------------------------------------------
 
 data TypeMorphism : Relation_Arrow Type where
-  MkTypeMor : 
+  MkTypeMorphism : 
     {source, target: Type} ->
     (recMor: source -> target) ->
     TypeMorphism source target
 
 recMor : {source, target: Type} -> TypeMorphism source target -> source -> target
-recMor (MkTypeMor mor) = mor
+recMor (MkTypeMorphism mor) = mor
 
 instance Apply0Class (TypeMorphism source target) source target where
   ($) = recMor

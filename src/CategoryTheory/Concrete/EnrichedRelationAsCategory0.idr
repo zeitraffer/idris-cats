@@ -36,6 +36,6 @@ instance
 EnrichedRelationCategory0' : (Category0ShortClass over) => Category0FullRecord
 EnrichedRelationCategory0' {over} = mkCategory0 {ob = EnrichedRelationRecord over}
 
---EnrichedRelationCategory0 : Category0FullRecord -> Category0FullRecord
---EnrichedRelationCategory0 rOver = 
+EnrichedRelationCategory0 : Category0ShortRecord -> Category0FullRecord
+EnrichedRelationCategory0 rOver = EnrichedRelationCategory0' @{recInstance rOver}
 
