@@ -11,7 +11,7 @@ import CategoryTheory.Concrete.EnrichedRelationAsRelation
 ------------------------------------------------------------
 
 instance 
-    (Category0ShortClass over) =>
+    (RelationClass over, Category0FullClass over (~>)) =>
     Category0FullClass (EnrichedRelationRecord over) (~>) 
   where
 
@@ -35,11 +35,27 @@ instance
                  (Hom rel3 (map23 (map12 x)) (map23 (map12 y)))
                  ((functor12 x y) & (functor23 (map12 x) (map12 y)))) 
 
-EnrichedRelationCategory0' : 
-  (Category0ShortClass over) => Category0FullClass (EnrichedRelationRecord over) (~>)
-EnrichedRelationCategory0' = %instance
+EnrichedRelationCategory0Full' : 
+  (RelationClass over, Category0FullClass over (~>)) => 
+  Category0FullClass (EnrichedRelationRecord over) (~>)
+EnrichedRelationCategory0Full' = %instance
 
-EnrichedRelationCategory0 : 
-  Category0ShortRecord -> Category0FullRecord
-EnrichedRelationCategory0 rOver = mkCategory0 @{EnrichedRelationCategory0' @{recInstance rOver}}
+EnrichedRelationCategory0Full : Category0ShortRecord -> Category0FullRecord
+EnrichedRelationCategory0Full rOver = 
+  mkCategory0 @{EnrichedRelationCategory0Full' 
+    @{castCategory0Relation' @{recInstance rOver}} 
+    @{castCategory0ShortFull' @{recInstance rOver}}}
+
+instance 
+    (Category0ShortClass over) =>
+    Category0ShortClass (EnrichedRelationRecord over) 
+  where {}
+
+EnrichedRelationCategory0Short' : 
+  (Category0ShortClass over) => Category0ShortClass (EnrichedRelationRecord over)
+EnrichedRelationCategory0Short' = %instance
+
+EnrichedRelationCategory0Short : Category0ShortRecord -> Category0ShortRecord
+EnrichedRelationCategory0Short rOver = 
+  mkCategory0 @{EnrichedRelationCategory0Short' @{recInstance rOver}}
 

@@ -2,6 +2,7 @@ module CategoryTheory.Concrete.Category0
 
 ------------------------------------------------------------
 
+import CategoryTheory.Concrete.Relation
 import CategoryTheory.Concrete.Category0Full
 import CategoryTheory.Concrete.Category0Short
 
@@ -10,20 +11,21 @@ import CategoryTheory.Concrete.Category0Short
 
 ------------------------------------------------------------
 
-castCategory0ShortFull' : (Category0ShortClass ob) => Category0FullRecord
-castCategory0ShortFull' {ob} = mkCategory0 {ob = ob} 
+castCategory0ShortFull' : (Category0ShortClass ob) => Category0FullClass ob (~>)
+castCategory0ShortFull' = %instance
 
 castCategory0ShortFull : Category0ShortRecord -> Category0FullRecord
-castCategory0ShortFull rec = castCategory0ShortFull' @{recInstance rec}
+castCategory0ShortFull rec = mkCategory0 @{castCategory0ShortFull' @{recInstance rec}}
 
 instance Cast Category0ShortRecord Category0FullRecord where
   cast = castCategory0ShortFull
 
-{-
-castCategory0FullShort' : 
-  (RelationClass ob, Category0FullClass ob (~>)) => 
-  Category0ShortRecord
-castCategory0FullShort' {ob} = mkCategory0 {ob = ob} 
--}
+castCategory0Relation' : (Category0ShortClass ob) => RelationClass ob
+castCategory0Relation' = %instance
 
+castCategory0Relation : Category0ShortRecord -> RelationRecord
+castCategory0Relation rec = mkRelation @{castCategory0Relation' @{recInstance rec}}
+
+instance Cast Category0ShortRecord RelationRecord where
+  cast = castCategory0Relation
 
