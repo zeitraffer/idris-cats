@@ -14,11 +14,6 @@ class
     Category0ShortClass (ob: Type)
   where {}
 
-instance 
-    (RelationClass ob, Category0FullClass ob (~>)) => 
-    Category0ShortClass ob
-  where {}
-
 data Category0ShortRecord : Type where
   MkCategory0Short :
     (ob: Type) -> 

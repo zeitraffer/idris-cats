@@ -25,8 +25,11 @@ data RelationMorphism : Relation_Arrow RelationRecord where
 instance RelationClass RelationRecord where
   (~>) = RelationMorphism
 
+RelationRelation' : RelationClass RelationRecord
+RelationRelation' = %instance
+
 RelationRelation : RelationRecord
-RelationRelation = mkRelation {ob = RelationRecord}
+RelationRelation = mkRelation @{RelationRelation'}
 
 recMap : {rSource, rTarget: RelationRecord} ->
          rSource ~> rTarget ->

@@ -27,7 +27,11 @@ RelationMorphism2 {rSource = MkRelation source sourceInst}
 instance RelationClass (RelationMorphism rSource rTarget) where 
   (~>) = RelationMorphism2
 
+RelationMorphismRelation' : 
+  (rSource, rTarget: RelationRecord) -> RelationClass (RelationMorphism rSource rTarget)
+RelationMorphismRelation' rSource rTarget = %instance
+
 RelationMorphismRelation : RelationRecord ->> RelationRecord
 RelationMorphismRelation rSource rTarget = 
-  mkRelation {ob = RelationMorphism rSource rTarget}
+  mkRelation @{RelationMorphismRelation' rSource rTarget}
 

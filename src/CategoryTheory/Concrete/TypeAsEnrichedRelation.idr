@@ -13,6 +13,9 @@ import CategoryTheory.Concrete.TypeAsRelation
 instance EnrichedRelationClass Type Type where
   (:>) = TypeMorphism
 
+TypeEnrichedRelation' : EnrichedRelationClass Type Type
+TypeEnrichedRelation' = %instance
+
 TypeEnrichedRelation : EnrichedRelationRecord Type
-TypeEnrichedRelation = mkEnrichedRelation {ob = Type}
+TypeEnrichedRelation = mkEnrichedRelation @{TypeEnrichedRelation'}
 

@@ -62,9 +62,9 @@ instance
   where
     (~>) = EnrichedRelationMorphism (mkRelation {ob = over})
 
-EnrichedRelationRelation' : (RelationClass over) => RelationRecord
-EnrichedRelationRelation' {over} = mkRelation {ob = EnrichedRelationRecord over}
+EnrichedRelationRelation' : (RelationClass over) => RelationClass (EnrichedRelationRecord over)
+EnrichedRelationRelation' {over} = %instance
 
 EnrichedRelationRelation : RelationRecord -> RelationRecord
-EnrichedRelationRelation rOver = EnrichedRelationRelation' @{recInstance rOver}
+EnrichedRelationRelation rOver = mkRelation @{EnrichedRelationRelation' @{recInstance rOver}}
 

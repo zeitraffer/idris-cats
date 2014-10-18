@@ -17,8 +17,11 @@ data UnitMorphism : Relation_Arrow unit where
 instance RelationClass unit where
   (~>) = UnitMorphism
 
+UnitRelation' : RelationClass unit
+UnitRelation' = %instance
+
 UnitRelation : RelationRecord
-UnitRelation = mkRelation {ob = unit}
+UnitRelation = mkRelation @{UnitRelation'}
 
 IsProductMorphism' :
   (RelationClass left, RelationClass right) =>
@@ -53,16 +56,21 @@ instance (RelationClass left, RelationClass right) =>
   where
     (~>) = ProductMorphism (mkRelation {ob = left}) (mkRelation {ob = right})
 
-ProductRelation' : (RelationClass left, RelationClass right) => RelationRecord
-ProductRelation' {left} {right} = mkRelation {ob = left # right}
+ProductRelation' : 
+  (RelationClass left, RelationClass right) => RelationClass (left # right)
+ProductRelation' {left} {right} = %instance
 
 ProductRelation : Monoid0_Product RelationRecord
-ProductRelation (rLeft, rRight) = ProductRelation' @{recInstance rLeft} @{recInstance rRight}
+ProductRelation (rLeft, rRight) = 
+  mkRelation @{ProductRelation' @{recInstance rLeft} @{recInstance rRight}}
 
 instance Monoid0Class RelationRecord where
   getUnit0 _ = UnitRelation 
   getProduct0 = ProductRelation
 
+RelationMonoid0' : Monoid0Class RelationRecord
+RelationMonoid0' = %instance
+
 RelationMonoid0 : Monoid0Record
-RelationMonoid0 = mkMonoid0 {carrier = RelationRecord}
+RelationMonoid0 = mkMonoid0 @{RelationMonoid0'}
 

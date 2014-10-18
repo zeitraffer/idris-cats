@@ -32,6 +32,9 @@ instance
   where
     (~>) = TypeMorphism
 
+TypeRelation' : RelationClass Type
+TypeRelation' = %instance
+
 TypeRelation : RelationRecord
-TypeRelation = mkRelation {ob = Type}
+TypeRelation = mkRelation @{TypeRelation'}
 

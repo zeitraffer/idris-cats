@@ -22,6 +22,9 @@ instance
         ((recMap mor23) . (recMap mor12))
         (\_,_ => (recFunctor mor23 _ _) . (recFunctor mor12 _ _))
 
+RelationCategory0' : Category0FullClass RelationRecord (~>)
+RelationCategory0' = %instance
+
 RelationCategory0 : Category0FullRecord
-RelationCategory0 = mkCategory0 {ob = RelationRecord}
+RelationCategory0 = mkCategory0 @{RelationCategory0'}
 

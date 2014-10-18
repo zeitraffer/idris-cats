@@ -35,9 +35,11 @@ instance
                  (Hom rel3 (map23 (map12 x)) (map23 (map12 y)))
                  ((functor12 x y) & (functor23 (map12 x) (map12 y)))) 
 
-EnrichedRelationCategory0' : (Category0ShortClass over) => Category0FullRecord
-EnrichedRelationCategory0' {over} = mkCategory0 {ob = EnrichedRelationRecord over}
+EnrichedRelationCategory0' : 
+  (Category0ShortClass over) => Category0FullClass (EnrichedRelationRecord over) (~>)
+EnrichedRelationCategory0' = %instance
 
-EnrichedRelationCategory0 : Category0ShortRecord -> Category0FullRecord
-EnrichedRelationCategory0 rOver = EnrichedRelationCategory0' @{recInstance rOver}
+EnrichedRelationCategory0 : 
+  Category0ShortRecord -> Category0FullRecord
+EnrichedRelationCategory0 rOver = mkCategory0 @{EnrichedRelationCategory0' @{recInstance rOver}}
 
