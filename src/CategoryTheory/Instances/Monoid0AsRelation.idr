@@ -1,9 +1,9 @@
-module CategoryTheory.Concrete.Monoid0AsRelation
+module CategoryTheory.Instances.Monoid0AsRelation
 
 ------------------------------------------------------------
 
-import CategoryTheory.Concrete.Relation
-import CategoryTheory.Concrete.Monoid0
+import CategoryTheory.Classes.Relation
+import CategoryTheory.Classes.Monoid0
 
 %access public
 %default total

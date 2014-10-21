@@ -1,9 +1,9 @@
-module CategoryTheory.Concrete.TypeAsEnrichedRelation
+module CategoryTheory.Instances.TypeAsEnrichedRelation
 
 ------------------------------------------------------------
 
-import CategoryTheory.Concrete.EnrichedRelation
-import CategoryTheory.Concrete.TypeAsRelation
+import CategoryTheory.Classes.EnrichedRelation
+import CategoryTheory.Instances.TypeAsRelation
 
 %access public
 %default total

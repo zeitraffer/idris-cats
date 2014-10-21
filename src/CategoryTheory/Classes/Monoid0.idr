@@ -1,4 +1,4 @@
-module CategoryTheory.Concrete.Monoid0
+module CategoryTheory.Classes.Monoid0
 
 ------------------------------------------------------------
 

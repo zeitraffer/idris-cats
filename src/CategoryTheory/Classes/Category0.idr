@@ -1,10 +1,10 @@
-module CategoryTheory.Concrete.Category0
+module CategoryTheory.Classes.Category0
 
 ------------------------------------------------------------
 
-import CategoryTheory.Concrete.Relation
-import CategoryTheory.Concrete.Category0Full
-import CategoryTheory.Concrete.Category0Short
+import CategoryTheory.Classes.Relation
+import CategoryTheory.Classes.Category0Full
+import CategoryTheory.Classes.Category0Short
 
 %access public
 %default total

@@ -1,10 +1,10 @@
-module CategoryTheory.Concrete.RelationAsMonoid0
+module CategoryTheory.Instances.RelationAsMonoid0
 
 ------------------------------------------------------------
 
-import CategoryTheory.Concrete.Monoid0
-import CategoryTheory.Concrete.Relation
-import CategoryTheory.Concrete.TypeAsMonoid0
+import CategoryTheory.Classes.Monoid0
+import CategoryTheory.Classes.Relation
+import CategoryTheory.Instances.TypeAsMonoid0
 
 %access public
 %default total

@@ -1,8 +1,8 @@
-module CategoryTheory.Concrete.Category0Short
+module CategoryTheory.Classes.Category0Short
 
 ------------------------------------------------------------
 
-import CategoryTheory.Concrete.Category0Full
+import CategoryTheory.Classes.Category0Full
 
 %access public
 %default total

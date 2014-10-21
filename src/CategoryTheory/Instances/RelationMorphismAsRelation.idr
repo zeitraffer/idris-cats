@@ -1,8 +1,8 @@
-module CategoryTheory.Concrete.RelationMorphismAsRelation
+module CategoryTheory.Instances.RelationMorphismAsRelation
 
 ------------------------------------------------------------
 
-import CategoryTheory.Concrete.RelationAsRelation
+import CategoryTheory.Instances.RelationAsRelation
 
 %access public
 %default total

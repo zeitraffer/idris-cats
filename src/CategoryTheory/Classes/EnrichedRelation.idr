@@ -1,4 +1,4 @@
-module CategoryTheory.Concrete.EnrichedRelation
+module CategoryTheory.Classes.EnrichedRelation
 
 ------------------------------------------------------------
 

@@ -1,8 +1,8 @@
-module CategoryTheory.Concrete.TypeAsMonoid0
+module CategoryTheory.Instances.TypeAsMonoid0
 
 ------------------------------------------------------------
 
-import CategoryTheory.Concrete.Monoid0
+import CategoryTheory.Classes.Monoid0
 
 %access public
 %default total

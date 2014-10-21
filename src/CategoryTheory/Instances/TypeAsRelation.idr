@@ -1,8 +1,8 @@
-module CategoryTheory.Concrete.TypeAsRelation
+module CategoryTheory.Instances.TypeAsRelation
 
 ------------------------------------------------------------
 
-import CategoryTheory.Concrete.Relation
+import CategoryTheory.Classes.Relation
 
 %access public
 %default total

@@ -1,4 +1,4 @@
-module CategoryTheory.Concrete.Relation
+module CategoryTheory.Classes.Relation
 
 ------------------------------------------------------------
 

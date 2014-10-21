@@ -1,11 +1,11 @@
-module CategoryTheory.Concrete.RelationAsEnrichedRelation
+module CategoryTheory.Instances.RelationAsEnrichedRelation
 
 ------------------------------------------------------------
 
-import CategoryTheory.Concrete.Relation
-import CategoryTheory.Concrete.RelationAsRelation
-import CategoryTheory.Concrete.RelationMorphismAsRelation
-import CategoryTheory.Concrete.EnrichedRelation
+import CategoryTheory.Classes.Relation
+import CategoryTheory.Classes.EnrichedRelation
+import CategoryTheory.Instances.RelationAsRelation
+import CategoryTheory.Instances.RelationMorphismAsRelation
 
 %access public
 %default total
