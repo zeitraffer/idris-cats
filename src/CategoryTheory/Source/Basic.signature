@@ -27,7 +27,7 @@ signature Classic0Monoid (class carrier : Type) where
 signature UnbiasedClassic0Monoid = Algebra List
 
 !FreeClassic0Monoid: Type -> Classic0Monoid
-!FreeClassic0MonoidFunctor0: TypeClassic0Category -> Classic0MonoidClassic0Category
+!FreeClassic0MonoidFunctor0: MappingClassic0Category -> Classic0MonoidClassic0Category
 !FreeClassic0Monoid @ Adjunction
 !Classic0Monoid <~> Algebra List
 

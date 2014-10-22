@@ -4,7 +4,7 @@ module CategoryTheory.Classes.Classic0CategoryFull
 
 import CategoryTheory.Classes.EndoRelation
 import CategoryTheory.Classes.Classic0Monoid
-import CategoryTheory.Instances.TypeMappingAsEndoRelation
+import CategoryTheory.Instances.MappingAsEndoRelation
 import CategoryTheory.Instances.TypeAsClassic0Monoid
 
 %access public
