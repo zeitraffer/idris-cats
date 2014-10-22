@@ -11,19 +11,23 @@ import CategoryTheory.Classes.Classic0Monoid
 ------------------------------------------------------------
 
 using (carrier: Type) 
-  data FreeClassic0MonoidType : Type -> Type where
-    MkMonoidPrimitive : 
-      carrier -> FreeClassic0MonoidType carrier
-    MkMonoidUnit : 
-      Classic0Monoid_Unit (FreeClassic0MonoidType carrier)
-    MkMonoidProduct : 
-      Classic0Monoid_Product (FreeClassic0MonoidType carrier)
+  data FreeClassic0MonoidType : Type -> Type 
+    where
+      MkMonoidPrimitive : 
+        carrier -> FreeClassic0MonoidType carrier
+      MkMonoidUnit : 
+        Classic0Monoid_Unit (FreeClassic0MonoidType carrier)
+      MkMonoidProduct : 
+        Classic0Monoid_Product (FreeClassic0MonoidType carrier)
 
-instance Classic0MonoidClass (FreeClassic0MonoidType carrier) where
-  getUnit0 = MkMonoidUnit
-  getProduct0 = MkMonoidProduct   
+instance Classic0MonoidClass (FreeClassic0MonoidType carrier) 
+  where
+    getUnit0 = MkMonoidUnit
+    getProduct0 = MkMonoidProduct   
 
-FreeClassic0Monoid' : (carrier: Type) -> Classic0MonoidClass (FreeClassic0MonoidType carrier)
+FreeClassic0Monoid' : 
+  (carrier: Type) -> 
+  Classic0MonoidClass (FreeClassic0MonoidType carrier)
 FreeClassic0Monoid' _ = %instance
 
 FreeClassic0Monoid : Type -> Classic0MonoidRecord

@@ -11,30 +11,34 @@ import CategoryTheory.Instances.TypeAsClassic0Monoid
 
 ------------------------------------------------------------
 
-data UnitOver : Type -> Type where
-  MkUnitOver : (t: Type) -> UnitOver t
+data UnitOver over = MkUnitOver
 
-instance 
-    (Classic0MonoidClass over) => 
+instance (Classic0MonoidClass over) => 
     EnrichedEndoRelationClass over (UnitOver over) 
   where
     (:>) _ _ = unit
 
-UnitEnrichedEndoRelation' : (Classic0MonoidClass over) => EnrichedEndoRelationClass over (UnitOver over)
+UnitEnrichedEndoRelation' : 
+  (Classic0MonoidClass over) => EnrichedEndoRelationClass over (UnitOver over)
 UnitEnrichedEndoRelation' {over} = %instance
 
-UnitEnrichedEndoRelation : (rOver: Classic0MonoidRecord) -> EnrichedEndoRelationRecord |rOver|
-UnitEnrichedEndoRelation rOver = mkEnrichedEndoRelation @{UnitEnrichedEndoRelation' @{recInstance rOver}}
+UnitEnrichedEndoRelation : 
+  (rOver: Classic0MonoidRecord) -> EnrichedEndoRelationRecord |rOver|
+UnitEnrichedEndoRelation rOver = 
+  mkEnrichedEndoRelation @{UnitEnrichedEndoRelation' @{recInstance rOver}}
 
-instance 
-    (Classic0MonoidClass over, EnrichedEndoRelationClass over left, EnrichedEndoRelationClass over right) => 
+instance ( Classic0MonoidClass over, 
+           EnrichedEndoRelationClass over left, 
+           EnrichedEndoRelationClass over right ) => 
     EnrichedEndoRelationClass over (left # right) 
   where
     (:>) (leftSource & rightSource) (leftTarget & rightTarget) =     
       (leftSource :> leftTarget) # (rightSource :> rightTarget)
 
 ProductEnrichedEndoRelation' : 
-  (Classic0MonoidClass over, EnrichedEndoRelationClass over left, EnrichedEndoRelationClass over right) => 
+  ( Classic0MonoidClass over, 
+    EnrichedEndoRelationClass over left, 
+    EnrichedEndoRelationClass over right) => 
   EnrichedEndoRelationClass over (left # right)
 ProductEnrichedEndoRelation' {left} {right} = %instance
 
@@ -47,20 +51,21 @@ ProductEnrichedEndoRelation rOver (rLeft, rRight) =
                              @{recInstance rLeft} 
                              @{recInstance rRight}}
 
-instance 
-    (Classic0MonoidClass over) => 
+instance (Classic0MonoidClass over) => 
     Classic0MonoidClass (EnrichedEndoRelationRecord over)
   where
-    getUnit0 _ = 
-      mkEnrichedEndoRelation @{UnitEnrichedEndoRelation'}
+    getUnit0 _ = mkEnrichedEndoRelation @{UnitEnrichedEndoRelation'}
     getProduct0 (rLeft, rRight) = 
       mkEnrichedEndoRelation @{ProductEnrichedEndoRelation' @{%instance} 
                                                     @{recInstance rLeft} 
                                                     @{recInstance rRight}}
 
-EnrichedEndoRelationClassic0Monoid' : (Classic0MonoidClass over) => Classic0MonoidClass (EnrichedEndoRelationRecord over)
+EnrichedEndoRelationClassic0Monoid' : 
+  (Classic0MonoidClass over) => 
+  Classic0MonoidClass (EnrichedEndoRelationRecord over)
 EnrichedEndoRelationClassic0Monoid' {over} = %instance
 
 EnrichedEndoRelationClassic0Monoid : Classic0MonoidRecord -> Classic0MonoidRecord
-EnrichedEndoRelationClassic0Monoid mOver = mkClassic0Monoid @{EnrichedEndoRelationClassic0Monoid' @{recInstance mOver}}
+EnrichedEndoRelationClassic0Monoid mOver = 
+  mkClassic0Monoid @{EnrichedEndoRelationClassic0Monoid' @{recInstance mOver}}
 

@@ -11,7 +11,9 @@ import CategoryTheory.Classes.EnrichedEndoRelation
 ------------------------------------------------------------
 
 IsEnrichedFunctor0' : 
-  (EndoRelationClass over, EnrichedEndoRelationClass over source, EnrichedEndoRelationClass over target) =>
+  ( EndoRelationClass over, 
+    EnrichedEndoRelationClass over source, 
+    EnrichedEndoRelationClass over target ) =>
   (source -> target) -> Type
 IsEnrichedFunctor0' {source} f =
     (x, y: source) ->
@@ -24,8 +26,7 @@ IsEnrichedFunctor0 :
 IsEnrichedFunctor0 rOver rSource rTarget = 
     IsEnrichedFunctor0' @{recInstance rOver} @{recInstance rSource} @{recInstance rTarget}
 
-data 
-  EnrichedEndoRelationMorphism : 
+data EnrichedEndoRelationMorphism : 
     (rOver: EndoRelationRecord) -> 
     EndoRelation_Arrow (EnrichedEndoRelationRecord |rOver| ) 
   where
@@ -56,13 +57,13 @@ instance Apply0Class (EnrichedEndoRelationMorphism rOver rSource rTarget)
   where
     ($) = recMap
 
-instance 
-    (EndoRelationClass over) => 
+instance (EndoRelationClass over) => 
     EndoRelationClass (EnrichedEndoRelationRecord over) 
   where
     (~>) = EnrichedEndoRelationMorphism (mkEndoRelation {ob = over})
 
-EnrichedEndoRelationEndoRelation' : (EndoRelationClass over) => EndoRelationClass (EnrichedEndoRelationRecord over)
+EnrichedEndoRelationEndoRelation' : 
+  (EndoRelationClass over) => EndoRelationClass (EnrichedEndoRelationRecord over)
 EnrichedEndoRelationEndoRelation' {over} = %instance
 
 EnrichedEndoRelationEndoRelation : EndoRelationRecord -> EndoRelationRecord

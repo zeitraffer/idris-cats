@@ -12,8 +12,9 @@ import CategoryTheory.Instances.EndoRelationMorphismAsEndoRelation
 
 ------------------------------------------------------------
 
-instance EnrichedEndoRelationClass EndoRelationRecord EndoRelationRecord where
-  (:>) = EndoRelationMorphismEndoRelation
+instance EnrichedEndoRelationClass EndoRelationRecord EndoRelationRecord 
+  where
+    (:>) = EndoRelationMorphismEndoRelation
 
 EndoRelationEnrichedEndoRelation' : EnrichedEndoRelationClass EndoRelationRecord EndoRelationRecord
 EndoRelationEnrichedEndoRelation' = %instance

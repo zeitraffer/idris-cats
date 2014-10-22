@@ -9,9 +9,10 @@ import CategoryTheory.Classes.Classic0Monoid
 
 ------------------------------------------------------------
 
-instance Classic0MonoidClass Type where
-  getUnit0 none = ()
-  getProduct0 pair = (fst pair, snd pair)
+instance Classic0MonoidClass Type 
+  where
+    getUnit0 none = ()
+    getProduct0 pair = (fst pair, snd pair)
 
 TypeClassic0Monoid' : Classic0MonoidClass Type
 TypeClassic0Monoid' = %instance

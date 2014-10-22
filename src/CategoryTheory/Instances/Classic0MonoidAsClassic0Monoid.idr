@@ -10,9 +10,10 @@ import CategoryTheory.Instances.TypeAsClassic0Monoid
 
 ------------------------------------------------------------
 
-instance Classic0MonoidClass () where
-  getUnit0 _ = ()
-  getProduct0 _ = ()
+instance Classic0MonoidClass () 
+  where
+    getUnit0 _ = ()
+    getProduct0 _ = ()
 
 UnitClassic0Monoid : Classic0MonoidRecord
 UnitClassic0Monoid = mkClassic0Monoid {carrier = ()}
@@ -24,16 +25,19 @@ instance
     getUnit0 _ = (unit, unit)
     getProduct0 ((leftA & rightA), (leftB & rightB)) = (leftA # leftB) & (rightA # rightB)
 
-ProductClassic0Monoid' : (Classic0MonoidClass left, Classic0MonoidClass right) => Classic0MonoidClass (left # right)
+ProductClassic0Monoid' : 
+  (Classic0MonoidClass left, Classic0MonoidClass right) => 
+  Classic0MonoidClass (left # right)
 ProductClassic0Monoid' {left} {right} = %instance
 
 ProductClassic0Monoid : Classic0Monoid_Product Classic0MonoidRecord
 ProductClassic0Monoid (rLeft, rRight) = 
   mkClassic0Monoid @{ProductClassic0Monoid' @{recInstance rLeft} @{recInstance rRight}}
 
-instance Classic0MonoidClass Classic0MonoidRecord where
-  getUnit0 _ = UnitClassic0Monoid
-  getProduct0 = ProductClassic0Monoid
+instance Classic0MonoidClass Classic0MonoidRecord 
+  where
+    getUnit0 _ = UnitClassic0Monoid
+    getProduct0 = ProductClassic0Monoid
 
 Classic0MonoidClassic0Monoid' : Classic0MonoidClass Classic0MonoidRecord
 Classic0MonoidClassic0Monoid' = %instance

@@ -10,11 +10,12 @@ import CategoryTheory.Classes.Classic0Monoid
 
 ------------------------------------------------------------
 
-data Classic0MonoidMorphism : EndoRelation_Arrow Classic0MonoidRecord where
-  MkClassic0MonoidMorphism : 
-    {mSource, mTarget: Classic0MonoidRecord} ->
-    ( |mSource| -> |mTarget| ) ->
-    Classic0MonoidMorphism mSource mTarget
+data Classic0MonoidMorphism : EndoRelation_Arrow Classic0MonoidRecord 
+  where
+    MkClassic0MonoidMorphism : 
+      {mSource, mTarget: Classic0MonoidRecord} ->
+      ( |mSource| -> |mTarget| ) ->
+      Classic0MonoidMorphism mSource mTarget
 
 recMor : 
   {mSource, mTarget: Classic0MonoidRecord} ->
@@ -22,15 +23,15 @@ recMor :
   |mSource| -> |mTarget|
 recMor (MkClassic0MonoidMorphism mor) = mor
 
-instance 
-  Apply0Class (Classic0MonoidMorphism mSource mTarget) 
-              |mSource| 
-              |mTarget|
+instance Apply0Class (Classic0MonoidMorphism mSource mTarget) 
+                     |mSource| 
+                     |mTarget|
   where
     ($) = recMor
 
-instance EndoRelationClass Classic0MonoidRecord where
-  (~>) = Classic0MonoidMorphism
+instance EndoRelationClass Classic0MonoidRecord 
+  where
+    (~>) = Classic0MonoidMorphism
 
 Classic0MonoidEndoRelation' : EndoRelationClass Classic0MonoidRecord
 Classic0MonoidEndoRelation' = %instance

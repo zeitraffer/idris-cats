@@ -15,17 +15,21 @@ instance ObClass RelationOb
   where
     Ob (MkRelationOb type) = type
 
+IsRelationMorphism : EndoRelation_Arrow RelationOb
+IsRelationMorphism oSource oTarget = 
+  (source: |oSource| ) -> (target: |oTarget| ) -> Type
+
 data RelationMorphism : EndoRelation_Arrow RelationOb 
   where
     MkRelationMorphism : 
       {source, target: RelationOb} ->
-      ( |source| -> |target| -> Type) ->
+      IsRelationMorphism source target ->
       RelationMorphism source target
 
 recMor : 
   {source, target: RelationOb} -> 
   RelationMorphism source target -> 
-  ( |source| -> |target| -> Type)
+  IsRelationMorphism source target
 recMor (MkRelationMorphism mor) = mor
 
 instance EndoRelationClass RelationOb 

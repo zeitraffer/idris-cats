@@ -10,8 +10,7 @@ import CategoryTheory.Instances.EnrichedEndoRelationAsEndoRelation
 
 ------------------------------------------------------------
 
-instance 
-    (EndoRelationClass over, Classic0CategoryFullClass over (~>)) =>
+instance (EndoRelationClass over, Classic0CategoryFullClass over (~>)) =>
     Classic0CategoryFullClass (EnrichedEndoRelationRecord over) (~>) 
   where
 
@@ -46,8 +45,7 @@ EnrichedEndoRelationClassic0CategoryFull rOver =
     @{castClassic0CategoryEndoRelation' @{recInstance rOver}} 
     @{castClassic0CategoryShortFull' @{recInstance rOver}}}
 
-instance 
-    (Classic0CategoryShortClass over) =>
+instance (Classic0CategoryShortClass over) =>
     Classic0CategoryShortClass (EnrichedEndoRelationRecord over) 
   where {}
 

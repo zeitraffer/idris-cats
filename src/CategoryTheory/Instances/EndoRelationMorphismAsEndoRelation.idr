@@ -24,8 +24,9 @@ EndoRelationMorphism2 {rSource = MkEndoRelation source sourceInst}
                   {rTarget = MkEndoRelation target targetInst} 
   = EndoRelationMorphism2' @{sourceInst} @{targetInst}
 
-instance EndoRelationClass (EndoRelationMorphism rSource rTarget) where 
-  (~>) = EndoRelationMorphism2
+instance EndoRelationClass (EndoRelationMorphism rSource rTarget) 
+  where 
+    (~>) = EndoRelationMorphism2
 
 EndoRelationMorphismEndoRelation' : 
   (rSource, rTarget: EndoRelationRecord) -> EndoRelationClass (EndoRelationMorphism rSource rTarget)
