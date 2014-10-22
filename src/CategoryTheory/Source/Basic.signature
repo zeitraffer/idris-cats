@@ -6,60 +6,60 @@ module Abstract.Naive.Basic
 
 infix class :>, ~>
 
-structure Relation (ob : Type) where
+structure EndoRelation (ob : Type) where
     (~>) : ob ->> Type
 
-implicit Type @ Relation 
-implicit Relation @ Relation
-implicit RelationMorphism @ Relation
+implicit Type @ EndoRelation 
+implicit EndoRelation @ EndoRelation
+implicit EndoRelationMorphism @ EndoRelation
 
-structure EnrichedRelation (over : Type) (ob : over) where
+structure EnrichedEndoRelation (over : Type) (ob : over) where
     (:>) : ob ->> over
 
-implicit Type @ EnrichedRelation Type
-implicit Relation @ EnrichedRelation Relation
-implicit (over @ Relation) => (EnrichedRelation over @ Relation)
+implicit Type @ EnrichedEndoRelation Type
+implicit EndoRelation @ EnrichedEndoRelation EndoRelation
+implicit (over @ EndoRelation) => (EnrichedEndoRelation over @ EndoRelation)
 
-signature Monoid0 (class carrier : Type) where
+signature Classic0Monoid (class carrier : Type) where
     unit/(1) : () -> carrier
     product/(#) : (carrier, carrier) -> carrier
 
-signature UnbiasedMonoid0 = Algebra List
+signature UnbiasedClassic0Monoid = Algebra List
 
-!FreeMonoid0: Type -> Monoid0
-!FreeMonoid0Functor0: TypeCategory0 -> Monoid0Category0
-!FreeMonoid0 @ Adjunction
-!Monoid0 <~> Algebra List
+!FreeClassic0Monoid: Type -> Classic0Monoid
+!FreeClassic0MonoidFunctor0: TypeClassic0Category -> Classic0MonoidClassic0Category
+!FreeClassic0Monoid @ Adjunction
+!Classic0Monoid <~> Algebra List
 
-implicit Type @ Monoid0
-implicit Relation @ Monoid0
-implicit (over @ Monoid) => (EnrichedRelation over @ Monoid0)
-implicit Monoid0 @ Relation
-implicit Monoid0 @ Monoid0 
+implicit Type @ Classic0Monoid
+implicit EndoRelation @ Classic0Monoid
+implicit (over @ Monoid) => (EnrichedEndoRelation over @ Classic0Monoid)
+implicit Classic0Monoid @ EndoRelation
+implicit Classic0Monoid @ Classic0Monoid 
 
-signature (Relation Type, Monoid0 Type, Relation ob) =>
-  Category0 (class ob : Type) where
+signature (EndoRelation Type, Classic0Monoid Type, EndoRelation ob) =>
+  Classic0Category (class ob : Type) where
     Id : {o : ob} -> 1 -> (o~>o)      
     Mul : {o1, o2, o3 : ob} -> (o1~>o2) # (o2~>o3) -> (o1~>o3)
 
-implicit Type @ Category0
-implicit Relation @ Category0
-implicit (over @ Category0) => (EnrichedRelation over @ Category0)
-implicit Monoid0 @ Category0
-?implicit Category0 @ Relation
-?implicit Category0 @ EnrichedRelation Category0 ???
-?implicit Category0 @ Monoid0
-?implicit Category0 @ Category0
+implicit Type @ Classic0Category
+implicit EndoRelation @ Classic0Category
+implicit (over @ Classic0Category) => (EnrichedEndoRelation over @ Classic0Category)
+implicit Classic0Monoid @ Classic0Category
+?implicit Classic0Category @ EndoRelation
+?implicit Classic0Category @ EnrichedEndoRelation Classic0Category ???
+?implicit Classic0Category @ Classic0Monoid
+?implicit Classic0Category @ Classic0Category
 
 !DualCat
 !PathCat
-!Monoid0 ==> Category0
+!Classic0Monoid ==> Classic0Category
 
-!Free: Relation -> Category0
+!Free: EndoRelation -> Classic0Category
   
 signature 
-  (Relation over, Monoid0 over, EnrichedRelation over ob) =>
-  EnrichedCategory0
+  (EndoRelation over, Classic0Monoid over, EnrichedEndoRelation over ob) =>
+  EnrichedClassic0Category
     {over : Type}
     (class ob : Type) 
   where
@@ -67,25 +67,25 @@ signature
     RMul : {o1, o2, o3 : ob} -> (o1:>o2) # (o2:>o3) ~> (o1:>o3)
   
 signature 
-  (Relation Type, Category0 ob) => 
+  (EndoRelation Type, Classic0Category ob) => 
   Groupoid0
     (class ob : Type) 
   where
     Inv : {o1, o2 : ob} ->  (o1~>o2) -> (o2~>o1)
 
 signature 
-  (Relation over, EnrichedCategory0 over ob) => 
+  (EndoRelation over, EnrichedClassic0Category over ob) => 
   EnrichedGroupoid0
     {over : Type}
     (class ob : Type) 
   where
     Inv : {o1, o2 : ob} -> (o1:>o2) ~> (o2:>o1)
 
-implicit Groupoid0 : Relation
+implicit Groupoid0 : EndoRelation
 implicit Groupoid0 : Monoid
 
 signature 
-  (EnrichedCategory0 ob (~>)) =>
+  (EnrichedClassic0Category ob (~>)) =>
   Category1
     (class ob : Type) 
     (implicit class (~>) : ob ->> Setoid)

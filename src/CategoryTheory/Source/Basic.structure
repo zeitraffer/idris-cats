@@ -10,14 +10,14 @@ class Ob Carrier
 -- instance Type (One, #, ~>)
 
 structure 
-  Monoid0
+  Classic0Monoid
     (Carrier : Type)
   where
     One : Carrier
     Mul : Carrier -> Carrier -> Carrier
 
 structure 
-  Category0
+  Classic0Category
     (Ob : Type) 
     (Mor : ob ->> Type) 
   where
@@ -25,7 +25,7 @@ structure
     Mul : {o1, o2, o3 : ob} -> Mor o1 o2 -> Mor o2 o3 ~> Mor o1 o3
   
 signature 
-  EnrichedCategory0
+  EnrichedClassic0Category
     {over = Setoid}
     (ob : Type) 
     (Hom : ob ->> Setoid = (Mor, Equ)) 
@@ -34,7 +34,7 @@ signature
     MulEqu : {o1, o2, o3 : ob} -> (o1~>o2) # (o2~>o3) ~> (o1~>o3)
   
 signature 
-  (Category0 (...)) => 
+  (Classic0Category (...)) => 
   Groupoid0
     (class ob : Type) 
     (implicit class (~>) : ob ->> Type) 
@@ -44,7 +44,7 @@ signature
 signature 
   (Graph Type) =>
   CatMap0
-    {c1, c2 : Category0} 
+    {c1, c2 : Classic0Category} 
     (class obMap : ob c1 -> ob c2)
   where
     ApplyEqu : {o1, o2 : ob c1} -> (o1 ~> o2) ~> (obMap o1 ~> obMap o2)
@@ -52,7 +52,7 @@ signature
 -- instance Setoid (1, #, ~>)
 
 signature 
-  (EnrichedCategory0 ob (~>)) =>
+  (EnrichedClassic0Category ob (~>)) =>
   Category1
     (class ob : Type) 
     (implicit class (~>) : ob ->> Setoid)

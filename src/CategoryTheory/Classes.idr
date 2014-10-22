@@ -2,10 +2,10 @@ module CategoryTheory.Classes
 
 ------------------------------------------------------------
 
-import CategoryTheory.Classes.Relation
-import CategoryTheory.Classes.EnrichedRelation
-import CategoryTheory.Classes.Monoid0
-import CategoryTheory.Classes.Category0
+import CategoryTheory.Classes.EndoRelation
+import CategoryTheory.Classes.EnrichedEndoRelation
+import CategoryTheory.Classes.Classic0Monoid
+import CategoryTheory.Classes.Classic0Category
 
 %access public
 %default total

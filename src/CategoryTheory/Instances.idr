@@ -2,25 +2,25 @@ module CategoryTheory.Instances
 
 ------------------------------------------------------------
 
-import CategoryTheory.Instances.TypeAsRelation
-import CategoryTheory.Instances.TypeAsEnrichedRelation
-import CategoryTheory.Instances.TypeAsMonoid0
-import CategoryTheory.Instances.TypeAsCategory0
+import CategoryTheory.Instances.TypeMappingAsEndoRelation
+import CategoryTheory.Instances.TypeMappingAsEnrichedEndoRelation
+import CategoryTheory.Instances.TypeAsClassic0Monoid
+import CategoryTheory.Instances.TypeAsClassic0Category
 
-import CategoryTheory.Instances.RelationAsRelation
-import CategoryTheory.Instances.RelationAsEnrichedRelation
-import CategoryTheory.Instances.RelationAsMonoid0
-import CategoryTheory.Instances.RelationAsCategory0
+import CategoryTheory.Instances.EndoRelationAsEndoRelation
+import CategoryTheory.Instances.EndoRelationAsEnrichedEndoRelation
+import CategoryTheory.Instances.EndoRelationAsClassic0Monoid
+import CategoryTheory.Instances.EndoRelationAsClassic0Category
 
-import CategoryTheory.Instances.RelationMorphismAsRelation
+import CategoryTheory.Instances.EndoRelationMorphismAsEndoRelation
 
-import CategoryTheory.Instances.EnrichedRelationAsRelation
-import CategoryTheory.Instances.EnrichedRelationAsMonoid0
-import CategoryTheory.Instances.EnrichedRelationAsCategory0
+import CategoryTheory.Instances.EnrichedEndoRelationAsEndoRelation
+import CategoryTheory.Instances.EnrichedEndoRelationAsClassic0Monoid
+import CategoryTheory.Instances.EnrichedEndoRelationAsClassic0Category
 
-import CategoryTheory.Instances.Monoid0AsRelation
-import CategoryTheory.Instances.Monoid0AsMonoid0
-import CategoryTheory.Instances.Monoid0AsCategory0
+import CategoryTheory.Instances.Classic0MonoidAsEndoRelation
+import CategoryTheory.Instances.Classic0MonoidAsClassic0Monoid
+import CategoryTheory.Instances.Classic0MonoidAsClassic0Category
 
 
 %access public
