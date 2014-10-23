@@ -12,7 +12,7 @@ import CategoryTheory.Instances.MappingAsEndoRelation
 
 instance EnrichedEndoRelationClass MappingOb MappingOb 
   where
-    (:>) source target = MkMappingOb (MappingMorphism source target)
+    (~>) source target = MkMappingOb (MappingMorphism source target)
 
 MappingEnrichedEndoRelation' : EnrichedEndoRelationClass MappingOb MappingOb
 MappingEnrichedEndoRelation' = %instance

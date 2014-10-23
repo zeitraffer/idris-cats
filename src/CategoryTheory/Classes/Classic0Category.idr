@@ -11,7 +11,7 @@ import CategoryTheory.Classes.Classic0CategoryShort
 
 ------------------------------------------------------------
 
-castClassic0CategoryShortFull' : (Classic0CategoryShortClass ob) => Classic0CategoryFullClass ob (~>)
+castClassic0CategoryShortFull' : (Classic0CategoryShortClass ob) => Classic0CategoryFullClass ob (|~>|)
 castClassic0CategoryShortFull' = %instance
 
 castClassic0CategoryShortFull : Classic0CategoryShortRecord -> Classic0CategoryFullRecord

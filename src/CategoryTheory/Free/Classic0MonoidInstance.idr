@@ -1,24 +1,15 @@
-module CategoryTheory.Free.Classic0Monoid
+module CategoryTheory.Free.Classic0MonoidInstance
 
 ------------------------------------------------------------
 
 import CategoryTheory.Common
 import CategoryTheory.Classes.Classic0Monoid
+import CategoryTheory.Free.Classic0MonoidType
 
 %access public
 %default total
 
 ------------------------------------------------------------
-
-using (carrier: Type) 
-  data FreeClassic0MonoidType : Type -> Type 
-    where
-      MkMonoidPrimitive : 
-        carrier -> FreeClassic0MonoidType carrier
-      MkMonoidUnit : 
-        Classic0Monoid_Unit (FreeClassic0MonoidType carrier)
-      MkMonoidProduct : 
-        Classic0Monoid_Product (FreeClassic0MonoidType carrier)
 
 instance Classic0MonoidClass (FreeClassic0MonoidType carrier) 
   where

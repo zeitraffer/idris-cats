@@ -4,17 +4,17 @@
 
 module Abstract.Naive.Basic
 
-infix class :>, ~>
+infix class ~>, |~>|
 
 structure EndoRelation (ob : Type) where
-    (~>) : ob ->> Type
+    (|~>|) : ob ->> Type
 
 implicit Type @ EndoRelation 
 implicit EndoRelation @ EndoRelation
 implicit EndoRelationMorphism @ EndoRelation
 
 structure EnrichedEndoRelation (over : Type) (ob : over) where
-    (:>) : ob ->> over
+    (~>) : ob ->> over
 
 implicit Type @ EnrichedEndoRelation Type
 implicit EndoRelation @ EnrichedEndoRelation EndoRelation
@@ -29,7 +29,7 @@ signature UnbiasedClassic0Monoid = Algebra List
 !FreeClassic0Monoid: Type -> Classic0Monoid
 !FreeClassic0MonoidFunctor0: MappingClassic0Category -> Classic0MonoidClassic0Category
 !FreeClassic0Monoid @ Adjunction
-!Classic0Monoid <~> Algebra List
+!Classic0Monoid <|~>| Algebra List
 
 implicit Type @ Classic0Monoid
 implicit EndoRelation @ Classic0Monoid
@@ -39,8 +39,8 @@ implicit Classic0Monoid @ Classic0Monoid
 
 signature (EndoRelation Type, Classic0Monoid Type, EndoRelation ob) =>
   Classic0Category (class ob : Type) where
-    Id : {o : ob} -> 1 -> (o~>o)      
-    Mul : {o1, o2, o3 : ob} -> (o1~>o2) # (o2~>o3) -> (o1~>o3)
+    Id : {o : ob} -> 1 -> (o|~>|o)      
+    Mul : {o1, o2, o3 : ob} -> (o1|~>|o2) # (o2|~>|o3) -> (o1|~>|o3)
 
 implicit Type @ Classic0Category
 implicit EndoRelation @ Classic0Category
@@ -63,15 +63,15 @@ signature
     {over : Type}
     (class ob : Type) 
   where
-    RId : {o : ob} -> 1 ~> (o:>o)      
-    RMul : {o1, o2, o3 : ob} -> (o1:>o2) # (o2:>o3) ~> (o1:>o3)
+    RId : {o : ob} -> 1 |~>| (o~>o)      
+    RMul : {o1, o2, o3 : ob} -> (o1~>o2) # (o2~>o3) |~>| (o1~>o3)
   
 signature 
   (EndoRelation Type, Classic0Category ob) => 
   Groupoid0
     (class ob : Type) 
   where
-    Inv : {o1, o2 : ob} ->  (o1~>o2) -> (o2~>o1)
+    Inv : {o1, o2 : ob} ->  (o1|~>|o2) -> (o2|~>|o1)
 
 signature 
   (EndoRelation over, EnrichedClassic0Category over ob) => 
@@ -79,19 +79,19 @@ signature
     {over : Type}
     (class ob : Type) 
   where
-    Inv : {o1, o2 : ob} -> (o1:>o2) ~> (o2:>o1)
+    Inv : {o1, o2 : ob} -> (o1~>o2) |~>| (o2~>o1)
 
 implicit Groupoid0 : EndoRelation
 implicit Groupoid0 : Monoid
 
 signature 
-  (EnrichedClassic0Category ob (~>)) =>
+  (EnrichedClassic0Category ob (|~>|)) =>
   Category1
     (class ob : Type) 
-    (implicit class (~>) : ob ->> Setoid)
+    (implicit class (|~>|) : ob ->> Setoid)
   where
     IdNeutralLeft : 
       {o1, o2 : ob} ->
-      (m : o1 ~> o2) :~> (1 >>> m ~> m)
+      (m : o1 |~>| o2) :|~>| (1 >>> m |~>| m)
   -- ...
 

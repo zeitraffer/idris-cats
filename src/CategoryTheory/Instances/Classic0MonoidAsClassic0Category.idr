@@ -11,12 +11,12 @@ import CategoryTheory.Instances.Classic0MonoidAsEndoRelation
 
 ------------------------------------------------------------
 
-instance Classic0CategoryFullClass Classic0MonoidRecord (~>) 
+instance Classic0CategoryFullClass Classic0MonoidRecord (|~>|) 
   where
     getIdentity0 o _ = MkClassic0MonoidMorphism id
     getMultiply0 o1 o2 o3 (m12 & m23) = MkClassic0MonoidMorphism ((recMor m23) . (recMor m12))
 
-Classic0MonoidClassic0CategoryFull' : Classic0CategoryFullClass Classic0MonoidRecord (~>)
+Classic0MonoidClassic0CategoryFull' : Classic0CategoryFullClass Classic0MonoidRecord (|~>|)
 Classic0MonoidClassic0CategoryFull' = %instance
 
 Classic0MonoidClassic0CategoryFull : Classic0CategoryFullRecord

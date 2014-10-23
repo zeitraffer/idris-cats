@@ -14,7 +14,7 @@ EndoRelation_Arrow ob = ob ->> Type
 
 class EndoRelationClass (ob: Type) 
   where
-    (~>) : EndoRelation_Arrow ob
+    (|~>|) : EndoRelation_Arrow ob
 
 data EndoRelationRecord : Type 
   where
@@ -39,5 +39,5 @@ instance ObClass EndoRelationRecord
     Ob = recOb
 
 Hom : (relation: EndoRelationRecord) -> EndoRelation_Arrow |relation|
-Hom relation = (~>) @{recInstance relation}
+Hom relation = (|~>|) @{recInstance relation}
 

@@ -17,7 +17,7 @@ data UnitMorphism : EndoRelation_Arrow unit
 
 instance EndoRelationClass unit 
   where
-    (~>) = UnitMorphism
+    (|~>|) = UnitMorphism
 
 UnitEndoRelation' : EndoRelationClass unit
 UnitEndoRelation' = %instance
@@ -29,7 +29,7 @@ IsProductMorphism' :
   (EndoRelationClass left, EndoRelationClass right) =>
   EndoRelation_Arrow (left # right)
 IsProductMorphism' (leftSource & rightSource) (leftTarget & rightTarget) =
-  (leftSource ~> leftTarget) # (rightSource ~> rightTarget)
+  (leftSource |~>| leftTarget) # (rightSource |~>| rightTarget)
 
 IsProductMorphism :
   (rLeft, rRight: EndoRelationRecord) -> 
@@ -57,7 +57,7 @@ recMor (MkProductMorphism mor) = mor
 instance (EndoRelationClass left, EndoRelationClass right) => 
     EndoRelationClass (left # right) 
   where
-    (~>) = ProductMorphism (mkEndoRelation {ob = left}) (mkEndoRelation {ob = right})
+    (|~>|) = ProductMorphism (mkEndoRelation {ob = left}) (mkEndoRelation {ob = right})
 
 ProductEndoRelation' : 
   (EndoRelationClass left, EndoRelationClass right) => EndoRelationClass (left # right)

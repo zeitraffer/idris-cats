@@ -12,7 +12,7 @@ import CategoryTheory.Classes.EndoRelation
 IsFunctor0' : 
   (EndoRelationClass source, EndoRelationClass target) => 
   (source -> target) -> Type
-IsFunctor0' {source} f = (x, y: source) -> (x ~> y) -> (f x ~> f y)
+IsFunctor0' {source} f = (x, y: source) -> (x |~>| y) -> (f x |~>| f y)
 
 IsFunctor0 : 
   (rSource, rTarget: EndoRelationRecord) -> 
@@ -29,7 +29,7 @@ data EndoRelationMorphism : EndoRelation_Arrow EndoRelationRecord
 
 instance EndoRelationClass EndoRelationRecord 
   where
-    (~>) = EndoRelationMorphism
+    (|~>|) = EndoRelationMorphism
 
 EndoRelationEndoRelation' : EndoRelationClass EndoRelationRecord
 EndoRelationEndoRelation' = %instance
@@ -39,13 +39,13 @@ EndoRelationEndoRelation = mkEndoRelation @{EndoRelationEndoRelation'}
 
 recMap : 
   {rSource, rTarget: EndoRelationRecord} ->
-  rSource ~> rTarget ->
+  rSource |~>| rTarget ->
   |rSource| -> |rTarget|
 recMap (MkEndoRelationMorphism map functor) = map
 
 recFunctor : 
   {rSource, rTarget: EndoRelationRecord} ->
-  (mor: rSource ~> rTarget) ->
+  (mor: rSource |~>| rTarget) ->
   IsFunctor0 rSource rTarget (recMap mor) 
 recFunctor (MkEndoRelationMorphism map functor) = functor
 

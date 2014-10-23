@@ -10,7 +10,7 @@ import CategoryTheory.Instances.EndoRelationAsEndoRelation
 
 ------------------------------------------------------------
 
-instance Classic0CategoryFullClass EndoRelationRecord (~>) 
+instance Classic0CategoryFullClass EndoRelationRecord (|~>|) 
   where
 
     getIdentity0 _ _ = MkEndoRelationMorphism 
@@ -21,7 +21,7 @@ instance Classic0CategoryFullClass EndoRelationRecord (~>)
         ((recMap mor23) . (recMap mor12))
         (\_,_ => (recFunctor mor23 _ _) . (recFunctor mor12 _ _))
 
-EndoRelationClassic0CategoryFull' : Classic0CategoryFullClass EndoRelationRecord (~>)
+EndoRelationClassic0CategoryFull' : Classic0CategoryFullClass EndoRelationRecord (|~>|)
 EndoRelationClassic0CategoryFull' = %instance
 
 EndoRelationClassic0CategoryFull : Classic0CategoryFullRecord

@@ -13,12 +13,12 @@ import CategoryTheory.Instances.TypeAsClassic0Monoid
 ------------------------------------------------------------
 
 Classic0Category_Identity : (ob: Type) -> (ob ->> Type) -> Type
-Classic0Category_Identity ob (~~>) = (o: ob) -> 
-    unit -> (o ~~> o)
+Classic0Category_Identity ob (>-) = (o: ob) -> 
+    unit -> (o >- o)
 
 Classic0Category_Multiply : (ob: Type) -> (ob ->> Type) -> Type
-Classic0Category_Multiply ob (~~>) = (o1, o2, o3 : ob) -> 
-    (o1 ~~> o2) # (o2 ~~> o3) -> (o1 ~~> o3)
+Classic0Category_Multiply ob (>-) = (o1, o2, o3 : ob) -> 
+    (o1 >- o2) # (o2 >- o3) -> (o1 >- o3)
 
 class Classic0CategoryFullClass (ob: Type) (to: ob ->> Type) 
   where

@@ -31,7 +31,7 @@ instance Apply0Class (Classic0MonoidMorphism mSource mTarget)
 
 instance EndoRelationClass Classic0MonoidRecord 
   where
-    (~>) = Classic0MonoidMorphism
+    (|~>|) = Classic0MonoidMorphism
 
 Classic0MonoidEndoRelation' : EndoRelationClass Classic0MonoidRecord
 Classic0MonoidEndoRelation' = %instance

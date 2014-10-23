@@ -16,7 +16,7 @@ data UnitOver over = MkUnitOver
 instance (Classic0MonoidClass over) => 
     EnrichedEndoRelationClass over (UnitOver over) 
   where
-    (:>) _ _ = unit
+    (~>) _ _ = unit
 
 UnitEnrichedEndoRelation' : 
   (Classic0MonoidClass over) => EnrichedEndoRelationClass over (UnitOver over)
@@ -32,8 +32,8 @@ instance ( Classic0MonoidClass over,
            EnrichedEndoRelationClass over right ) => 
     EnrichedEndoRelationClass over (left # right) 
   where
-    (:>) (leftSource & rightSource) (leftTarget & rightTarget) =     
-      (leftSource :> leftTarget) # (rightSource :> rightTarget)
+    (~>) (leftSource & rightSource) (leftTarget & rightTarget) =     
+      (leftSource ~> leftTarget) # (rightSource ~> rightTarget)
 
 ProductEnrichedEndoRelation' : 
   ( Classic0MonoidClass over, 

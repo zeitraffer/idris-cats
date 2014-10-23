@@ -34,7 +34,7 @@ recMor (MkRelationMorphism mor) = mor
 
 instance EndoRelationClass RelationOb 
   where
-    (~>) = RelationMorphism
+    (|~>|) = RelationMorphism
 
 RelationEndoRelation' : EndoRelationClass RelationOb
 RelationEndoRelation' = %instance

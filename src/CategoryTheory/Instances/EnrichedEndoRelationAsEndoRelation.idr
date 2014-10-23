@@ -17,7 +17,7 @@ IsEnrichedFunctor0' :
   (source -> target) -> Type
 IsEnrichedFunctor0' {source} f =
     (x, y: source) ->
-    (x :> y) ~> (f x :> f y)
+    (x ~> y) |~>| (f x ~> f y)
 
 IsEnrichedFunctor0 : 
   (rOver: EndoRelationRecord) ->
@@ -60,7 +60,7 @@ instance Apply0Class (EnrichedEndoRelationMorphism rOver rSource rTarget)
 instance (EndoRelationClass over) => 
     EndoRelationClass (EnrichedEndoRelationRecord over) 
   where
-    (~>) = EnrichedEndoRelationMorphism (mkEndoRelation {ob = over})
+    (|~>|) = EnrichedEndoRelationMorphism (mkEndoRelation {ob = over})
 
 EnrichedEndoRelationEndoRelation' : 
   (EndoRelationClass over) => EndoRelationClass (EnrichedEndoRelationRecord over)

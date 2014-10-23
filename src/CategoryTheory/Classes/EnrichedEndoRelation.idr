@@ -14,7 +14,7 @@ EnrichedEndoRelation_Arrow over ob = ob ->> over
 
 class EnrichedEndoRelationClass (over: Type) (ob: Type) 
   where
-    (:>) : EnrichedEndoRelation_Arrow over ob
+    (~>) : EnrichedEndoRelation_Arrow over ob
 
 data EnrichedEndoRelationRecord : Type -> Type 
   where
@@ -48,5 +48,5 @@ instance ObClass (EnrichedEndoRelationRecord over)
 Hom : 
   (relation: EnrichedEndoRelationRecord over) -> 
   EnrichedEndoRelation_Arrow over |relation|
-Hom relation = (:>) @{recInstance relation}
+Hom relation = (~>) @{recInstance relation}
 

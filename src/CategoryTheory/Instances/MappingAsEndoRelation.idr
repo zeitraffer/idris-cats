@@ -36,7 +36,7 @@ instance Apply0Class (MappingMorphism source target)
 
 instance EndoRelationClass MappingOb 
   where
-    (~>) = MappingMorphism
+    (|~>|) = MappingMorphism
 
 MappingEndoRelation' : EndoRelationClass MappingOb
 MappingEndoRelation' = %instance

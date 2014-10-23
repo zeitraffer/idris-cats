@@ -10,12 +10,12 @@ import CategoryTheory.Instances.TypeAsClassic0Monoid
 
 ------------------------------------------------------------
 
-instance Classic0CategoryFullClass MappingOb (~>) 
+instance Classic0CategoryFullClass MappingOb (|~>|) 
   where
     getIdentity0 o _ = MkMappingMorphism id
     getMultiply0 o1 o2 o3 (m12 & m23) = MkMappingMorphism ((recMor m23) . (recMor m12))
 
-MappingClassic0CategoryFull' : Classic0CategoryFullClass MappingOb (~>)
+MappingClassic0CategoryFull' : Classic0CategoryFullClass MappingOb (|~>|)
 MappingClassic0CategoryFull' = %instance
 
 MappingClassic0CategoryFull : Classic0CategoryFullRecord

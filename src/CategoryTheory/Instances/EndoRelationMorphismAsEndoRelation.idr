@@ -14,7 +14,7 @@ EndoRelationMorphism2' :
   EndoRelationMorphism (mkEndoRelation {ob = source}) (mkEndoRelation {ob = target}) ->> 
   Type
 EndoRelationMorphism2' {source} {target} m1 m2 = 
-  (o: source) -> (m1 $ o)~>(m2 $ o)
+  (o: source) -> (m1 $ o)|~>|(m2 $ o)
 
 EndoRelationMorphism2 : 
   {rSource, rTarget: EndoRelationRecord} ->
@@ -26,7 +26,7 @@ EndoRelationMorphism2 {rSource = MkEndoRelation source sourceInst}
 
 instance EndoRelationClass (EndoRelationMorphism rSource rTarget) 
   where 
-    (~>) = EndoRelationMorphism2
+    (|~>|) = EndoRelationMorphism2
 
 EndoRelationMorphismEndoRelation' : 
   (rSource, rTarget: EndoRelationRecord) -> EndoRelationClass (EndoRelationMorphism rSource rTarget)

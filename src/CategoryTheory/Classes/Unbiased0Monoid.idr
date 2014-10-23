@@ -14,7 +14,7 @@ Monoid0_Paste carrier = List carrier -> carrier
 
 class Unbiased0MonoidClass (carrier : Type) 
   where
-    mpaste : List carrier -> carrier
+    mpaste : Monoid0_Paste carrier
 
 data Unbiased0MonoidRecord : Type 
   where

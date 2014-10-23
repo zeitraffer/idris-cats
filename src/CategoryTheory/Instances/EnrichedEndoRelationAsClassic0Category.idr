@@ -10,15 +10,15 @@ import CategoryTheory.Instances.EnrichedEndoRelationAsEndoRelation
 
 ------------------------------------------------------------
 
-instance (EndoRelationClass over, Classic0CategoryFullClass over (~>)) =>
-    Classic0CategoryFullClass (EnrichedEndoRelationRecord over) (~>) 
+instance (EndoRelationClass over, Classic0CategoryFullClass over (|~>|)) =>
+    Classic0CategoryFullClass (EnrichedEndoRelationRecord over) (|~>|) 
   where
 
     getIdentity0 {over} rel ()
       = MkEnrichedEndoRelationMorphism 
         id 
         (\x,y => getIdentity0 
-                 {ob = over} {to = (~>)} -- FIXME this should be inferred
+                 {ob = over} {to = (|~>|)} -- FIXME this should be inferred
                  (Hom rel x y) 
                  ())
 
@@ -28,15 +28,15 @@ instance (EndoRelationClass over, Classic0CategoryFullClass over (~>)) =>
       = MkEnrichedEndoRelationMorphism 
         (map23 . map12)
         (\x,y => getMultiply0 
-                 {ob = over} {to = (~>)} -- FIXME this should be inferred
+                 {ob = over} {to = (|~>|)} -- FIXME this should be inferred
                  (Hom rel1 x y) 
                  (Hom rel2 (map12 x) (map12 y)) 
                  (Hom rel3 (map23 (map12 x)) (map23 (map12 y)))
                  ((functor12 x y) & (functor23 (map12 x) (map12 y)))) 
 
 EnrichedEndoRelationClassic0CategoryFull' : 
-  (EndoRelationClass over, Classic0CategoryFullClass over (~>)) => 
-  Classic0CategoryFullClass (EnrichedEndoRelationRecord over) (~>)
+  (EndoRelationClass over, Classic0CategoryFullClass over (|~>|)) => 
+  Classic0CategoryFullClass (EnrichedEndoRelationRecord over) (|~>|)
 EnrichedEndoRelationClassic0CategoryFull' = %instance
 
 EnrichedEndoRelationClassic0CategoryFull : Classic0CategoryShortRecord -> Classic0CategoryFullRecord
