@@ -2,6 +2,7 @@ module CategoryTheory.Instances.MappingAsEndoRelation
 
 ------------------------------------------------------------
 
+import CategoryTheory.Common
 import CategoryTheory.Classes.EndoRelation
 
 %access public

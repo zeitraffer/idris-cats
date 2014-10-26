@@ -10,6 +10,9 @@ import CategoryTheory.Instances.MappingAsClassic0Category
 
 import CategoryTheory.Instances.RelationAsEndoRelation
 
+import CategoryTheory.Instances.PlainFunctorAsEndoRelation
+import CategoryTheory.Instances.PlainFunctorAsClassic0Monoid
+
 import CategoryTheory.Instances.EndoRelationAsEndoRelation
 import CategoryTheory.Instances.EndoRelationAsEnrichedEndoRelation
 import CategoryTheory.Instances.EndoRelationAsClassic0Monoid

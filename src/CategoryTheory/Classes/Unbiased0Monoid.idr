@@ -3,6 +3,7 @@ module CategoryTheory.Classes.Unbiased0Monoid
 ------------------------------------------------------------
 
 import CategoryTheory.Common
+import CategoryTheory.Free.Unbiased0MonoidType
 
 %access public
 %default total
@@ -10,7 +11,7 @@ import CategoryTheory.Common
 ------------------------------------------------------------
 
 Monoid0_Paste : Type -> Type
-Monoid0_Paste carrier = List carrier -> carrier
+Monoid0_Paste carrier = FreeUnbiased0MonoidType carrier -> carrier
 
 class Unbiased0MonoidClass (carrier : Type) 
   where
