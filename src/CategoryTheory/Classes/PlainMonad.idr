@@ -4,8 +4,8 @@ module CategoryTheory.Classes.PlainMonad
 
 import CategoryTheory.Common
 import CategoryTheory.Classes.Classic0Monoid
-import CategoryTheory.Classes.EndoRelation
-import CategoryTheory.Instances.PlainFunctorAsEndoRelation
+import CategoryTheory.Classes.Graph
+import CategoryTheory.Instances.PlainFunctorAsGraph
 import CategoryTheory.Instances.PlainFunctorAsClassic0Monoid
 
 %access public

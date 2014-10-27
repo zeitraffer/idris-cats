@@ -6,19 +6,19 @@ module Abstract.Naive.Basic
 
 infix class ~>, |~>|
 
-structure EndoRelation (ob : Type) where
+structure Graph (ob : Type) where
     (|~>|) : ob ->> Type
 
-implicit Type @ EndoRelation 
-implicit EndoRelation @ EndoRelation
-implicit EndoRelationMorphism @ EndoRelation
+implicit Type @ Graph 
+implicit Graph @ Graph
+implicit GraphMorphism @ Graph
 
-structure EnrichedEndoRelation (over : Type) (ob : over) where
+structure EnrichedGraph (over : Type) (ob : over) where
     (~>) : ob ->> over
 
-implicit Type @ EnrichedEndoRelation Type
-implicit EndoRelation @ EnrichedEndoRelation EndoRelation
-implicit (over @ EndoRelation) => (EnrichedEndoRelation over @ EndoRelation)
+implicit Type @ EnrichedGraph Type
+implicit Graph @ EnrichedGraph Graph
+implicit (over @ Graph) => (EnrichedGraph over @ Graph)
 
 signature Classic0Monoid (class carrier : Type) where
     unit/(1) : () -> carrier
@@ -27,27 +27,27 @@ signature Classic0Monoid (class carrier : Type) where
 signature UnbiasedClassic0Monoid = Algebra List
 
 !FreeClassic0Monoid: Type -> Classic0Monoid
-!FreeClassic0MonoidFunctor0: MappingClassic0Category -> Classic0MonoidClassic0Category
+!FreeClassic0MonoidFunctor0: TypeClassic0Category -> Classic0MonoidClassic0Category
 !FreeClassic0Monoid @ Adjunction
 !Classic0Monoid <|~>| Algebra List
 
 implicit Type @ Classic0Monoid
-implicit EndoRelation @ Classic0Monoid
-implicit (over @ Monoid) => (EnrichedEndoRelation over @ Classic0Monoid)
-implicit Classic0Monoid @ EndoRelation
+implicit Graph @ Classic0Monoid
+implicit (over @ Monoid) => (EnrichedGraph over @ Classic0Monoid)
+implicit Classic0Monoid @ Graph
 implicit Classic0Monoid @ Classic0Monoid 
 
-signature (EndoRelation Type, Classic0Monoid Type, EndoRelation ob) =>
+signature (Graph Type, Classic0Monoid Type, Graph ob) =>
   Classic0Category (class ob : Type) where
     Id : {o : ob} -> 1 -> (o|~>|o)      
     Mul : {o1, o2, o3 : ob} -> (o1|~>|o2) # (o2|~>|o3) -> (o1|~>|o3)
 
 implicit Type @ Classic0Category
-implicit EndoRelation @ Classic0Category
-implicit (over @ Classic0Category) => (EnrichedEndoRelation over @ Classic0Category)
+implicit Graph @ Classic0Category
+implicit (over @ Classic0Category) => (EnrichedGraph over @ Classic0Category)
 implicit Classic0Monoid @ Classic0Category
-?implicit Classic0Category @ EndoRelation
-?implicit Classic0Category @ EnrichedEndoRelation Classic0Category ???
+?implicit Classic0Category @ Graph
+?implicit Classic0Category @ EnrichedGraph Classic0Category ???
 ?implicit Classic0Category @ Classic0Monoid
 ?implicit Classic0Category @ Classic0Category
 
@@ -55,10 +55,10 @@ implicit Classic0Monoid @ Classic0Category
 !PathCat
 !Classic0Monoid ==> Classic0Category
 
-!Free: EndoRelation -> Classic0Category
+!Free: Graph -> Classic0Category
   
 signature 
-  (EndoRelation over, Classic0Monoid over, EnrichedEndoRelation over ob) =>
+  (Graph over, Classic0Monoid over, EnrichedGraph over ob) =>
   EnrichedClassic0Category
     {over : Type}
     (class ob : Type) 
@@ -67,21 +67,21 @@ signature
     RMul : {o1, o2, o3 : ob} -> (o1~>o2) # (o2~>o3) |~>| (o1~>o3)
   
 signature 
-  (EndoRelation Type, Classic0Category ob) => 
+  (Graph Type, Classic0Category ob) => 
   Groupoid0
     (class ob : Type) 
   where
     Inv : {o1, o2 : ob} ->  (o1|~>|o2) -> (o2|~>|o1)
 
 signature 
-  (EndoRelation over, EnrichedClassic0Category over ob) => 
+  (Graph over, EnrichedClassic0Category over ob) => 
   EnrichedGroupoid0
     {over : Type}
     (class ob : Type) 
   where
     Inv : {o1, o2 : ob} -> (o1~>o2) |~>| (o2~>o1)
 
-implicit Groupoid0 : EndoRelation
+implicit Groupoid0 : Graph
 implicit Groupoid0 : Monoid
 
 signature 

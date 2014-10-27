@@ -4,7 +4,7 @@ module CategoryTheory.Instances.Classic0MonoidAsClassic0Category
 
 import CategoryTheory.Classes.Classic0Category
 import CategoryTheory.Classes.Classic0Monoid
-import CategoryTheory.Instances.Classic0MonoidAsEndoRelation
+import CategoryTheory.Instances.Classic0MonoidAsGraph
 
 %access public
 %default total

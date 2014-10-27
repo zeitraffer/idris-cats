@@ -2,7 +2,7 @@ module CategoryTheory.Classes.Classic0Category
 
 ------------------------------------------------------------
 
-import CategoryTheory.Classes.EndoRelation
+import CategoryTheory.Classes.Graph
 import CategoryTheory.Classes.Classic0CategoryFull
 import CategoryTheory.Classes.Classic0CategoryShort
 
@@ -21,13 +21,13 @@ instance Cast Classic0CategoryShortRecord Classic0CategoryFullRecord
   where
     cast = castClassic0CategoryShortFull
 
-castClassic0CategoryEndoRelation' : (Classic0CategoryShortClass ob) => EndoRelationClass ob
-castClassic0CategoryEndoRelation' = %instance
+castClassic0CategoryGraph' : (Classic0CategoryShortClass ob) => GraphClass ob
+castClassic0CategoryGraph' = %instance
 
-castClassic0CategoryEndoRelation : Classic0CategoryShortRecord -> EndoRelationRecord
-castClassic0CategoryEndoRelation rec = mkEndoRelation @{castClassic0CategoryEndoRelation' @{recInstance rec}}
+castClassic0CategoryGraph : Classic0CategoryShortRecord -> GraphRecord
+castClassic0CategoryGraph rec = mkGraph @{castClassic0CategoryGraph' @{recInstance rec}}
 
-instance Cast Classic0CategoryShortRecord EndoRelationRecord 
+instance Cast Classic0CategoryShortRecord GraphRecord 
   where
-    cast = castClassic0CategoryEndoRelation
+    cast = castClassic0CategoryGraph
 

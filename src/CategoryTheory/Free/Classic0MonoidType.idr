@@ -25,14 +25,14 @@ using (carrier: Type)
 monadUnit : PlainMonad_Unit FreeClassic0MonoidType
 monadUnit _ = MkMonoidPrimitive
 
-partial -- FIXME
+%assert_total -- FIXME
 monadMult : PlainMonad_Multiply FreeClassic0MonoidType 
 monadMult _ (MkMonoidPrimitive free) = free
 monadMult _ (MkMonoidUnit ()) = MkMonoidUnit ()
 monadMult _ (MkMonoidProduct (left, right)) = 
   MkMonoidProduct ((monadMult _ left), (monadMult _ right))
 
---instance PlainMonadClass FreeClassic0MonoidType where
---  getMonadUnit = monadUnit
---  getMonadMultiply = monadMult
+instance PlainMonadClass FreeClassic0MonoidType where
+  getMonadUnit = monadUnit
+  getMonadMultiply = monadMult
 

@@ -10,7 +10,7 @@ import CategoryTheory.Classes.Classic0CategoryFull
 ------------------------------------------------------------
 
 class 
-    (EndoRelationClass ob, Classic0CategoryFullClass ob (|~>|)) =>
+    (GraphClass ob, Classic0CategoryFullClass ob (|~>|)) =>
     Classic0CategoryShortClass (ob: Type)
   where {}
 

@@ -1,8 +1,8 @@
-module CategoryTheory.Instances.Classic0MonoidAsEndoRelation
+module CategoryTheory.Instances.Classic0MonoidAsGraph
 
 ------------------------------------------------------------
 
-import CategoryTheory.Classes.EndoRelation
+import CategoryTheory.Classes.Graph
 import CategoryTheory.Classes.Classic0Monoid
 
 %access public
@@ -10,7 +10,7 @@ import CategoryTheory.Classes.Classic0Monoid
 
 ------------------------------------------------------------
 
-data Classic0MonoidMorphism : EndoRelation_Arrow Classic0MonoidRecord 
+data Classic0MonoidMorphism : Graph_Arrow Classic0MonoidRecord 
   where
     MkClassic0MonoidMorphism : 
       {mSource, mTarget: Classic0MonoidRecord} ->
@@ -29,13 +29,13 @@ instance Apply0Class (Classic0MonoidMorphism mSource mTarget)
   where
     ($) = recMor
 
-instance EndoRelationClass Classic0MonoidRecord 
+instance GraphClass Classic0MonoidRecord 
   where
     (|~>|) = Classic0MonoidMorphism
 
-Classic0MonoidEndoRelation' : EndoRelationClass Classic0MonoidRecord
-Classic0MonoidEndoRelation' = %instance
+Classic0MonoidGraph' : GraphClass Classic0MonoidRecord
+Classic0MonoidGraph' = %instance
 
-Classic0MonoidEndoRelation : EndoRelationRecord
-Classic0MonoidEndoRelation = mkEndoRelation @{Classic0MonoidEndoRelation'}
+Classic0MonoidGraph : GraphRecord
+Classic0MonoidGraph = mkGraph @{Classic0MonoidGraph'}
 

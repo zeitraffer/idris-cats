@@ -2,7 +2,7 @@ module CategoryTheory.Instances.PlainFunctorAsClassic0Monoid
 
 ------------------------------------------------------------
 
-import CategoryTheory.Instances.PlainFunctorAsEndoRelation
+import CategoryTheory.Instances.PlainFunctorAsGraph
 import CategoryTheory.Classes.Classic0Monoid
 
 %access public

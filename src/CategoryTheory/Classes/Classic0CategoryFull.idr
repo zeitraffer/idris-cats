@@ -2,9 +2,9 @@ module CategoryTheory.Classes.Classic0CategoryFull
 
 ------------------------------------------------------------
 
-import CategoryTheory.Classes.EndoRelation
+import CategoryTheory.Classes.Graph
 import CategoryTheory.Classes.Classic0Monoid
-import CategoryTheory.Instances.MappingAsEndoRelation
+import CategoryTheory.Instances.TypeAsGraph
 import CategoryTheory.Instances.TypeAsClassic0Monoid
 
 %access public
@@ -60,8 +60,8 @@ id' {ob} {to} {o} =
     getIdentity0 {ob=ob} {to=to} o ()
 
 -- multiplication with implicit index
-(>>>) : (Classic0CategoryFullClass ob to) => {o1, o2, o3 : ob} -> 
-    (o1 `to` o2) -> (o2 `to` o3) -> (o1 `to` o3)
-(>>>) {ob} {to} {o1} {o2} {o3} m12 m23 =
+(.) : (Classic0CategoryFullClass ob to) => {o1, o2, o3 : ob} -> 
+    (o2 `to` o3) -> (o1 `to` o2) -> (o1 `to` o3)
+(.) {ob} {to} {o1} {o2} {o3} m23 m12 =
     getMultiply0 {ob=ob} {to=to} o1 o2 o3 (m12 & m23)
 

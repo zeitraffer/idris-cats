@@ -1,8 +1,8 @@
-module CategoryTheory.Instances.PlainFunctorAsEndoRelation
+module CategoryTheory.Instances.PlainFunctorAsGraph
 
 ------------------------------------------------------------
 
-import CategoryTheory.Classes.EndoRelation
+import CategoryTheory.Classes.Graph
 
 %access public
 %default total
@@ -12,7 +12,7 @@ import CategoryTheory.Classes.EndoRelation
 PlainFunctor : Type
 PlainFunctor = Type -> Type
 
-instance EndoRelationClass PlainFunctor
+instance GraphClass PlainFunctor
   where
     (|~>|) source target = 
       (arg: Type) -> (source arg) -> (target arg)

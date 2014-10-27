@@ -1,8 +1,8 @@
-module CategoryTheory.Instances.RelationAsEndoRelation
+module CategoryTheory.Instances.RelationAsGraph
 
 ------------------------------------------------------------
 
-import CategoryTheory.Classes.EndoRelation
+import CategoryTheory.Classes.Graph
 
 %access public
 %default total
@@ -15,11 +15,11 @@ instance ObClass RelationOb
   where
     Ob (MkRelationOb type) = type
 
-IsRelationMorphism : EndoRelation_Arrow RelationOb
+IsRelationMorphism : Graph_Arrow RelationOb
 IsRelationMorphism oSource oTarget = 
   (source: |oSource| ) -> (target: |oTarget| ) -> Type
 
-data RelationMorphism : EndoRelation_Arrow RelationOb 
+data RelationMorphism : Graph_Arrow RelationOb 
   where
     MkRelationMorphism : 
       {source, target: RelationOb} ->
@@ -32,13 +32,13 @@ recMor :
   IsRelationMorphism source target
 recMor (MkRelationMorphism mor) = mor
 
-instance EndoRelationClass RelationOb 
+instance GraphClass RelationOb 
   where
     (|~>|) = RelationMorphism
 
-RelationEndoRelation' : EndoRelationClass RelationOb
-RelationEndoRelation' = %instance
+RelationGraph' : GraphClass RelationOb
+RelationGraph' = %instance
 
-RelationEndoRelation : EndoRelationRecord
-RelationEndoRelation = mkEndoRelation @{RelationEndoRelation'}
+RelationGraph : GraphRecord
+RelationGraph = mkGraph @{RelationGraph'}
 
