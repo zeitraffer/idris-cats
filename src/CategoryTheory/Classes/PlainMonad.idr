@@ -15,10 +15,10 @@ import CategoryTheory.Instances.PlainFunctorAsClassic0Monoid
 
 -- TODO equivalence to 'monoid in category of endofunctors'
 
-PlainMonad_Unit : (Type -> Type) -> Type
+PlainMonad_Unit : PlainFunctor -> Type
 PlainMonad_Unit f = unit |~>| f    
 
-PlainMonad_Multiply : (Type -> Type) -> Type
+PlainMonad_Multiply : PlainFunctor -> Type
 PlainMonad_Multiply f = (f # f) |~>| f    
 
 class PlainMonadClass (func: PlainFunctor) where

@@ -2,6 +2,7 @@ module CategoryTheory.Instances.PlainFunctorAsGraph
 
 ------------------------------------------------------------
 
+import CategoryTheory.Common
 import CategoryTheory.Classes.Graph
 
 %access public
@@ -9,11 +10,7 @@ import CategoryTheory.Classes.Graph
 
 ------------------------------------------------------------
 
-PlainFunctor : Type
-PlainFunctor = Type -> Type
-
 instance GraphClass PlainFunctor
   where
-    (|~>|) source target = 
-      (arg: Type) -> (source arg) -> (target arg)
+    (|~>|) = PlainFunctorMorphism
 

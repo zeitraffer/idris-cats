@@ -13,7 +13,7 @@ import CategoryTheory.Classes.Classic0Monoid
 instance Classic0MonoidClass PlainFunctor 
   where
     getUnit0 none = id
-    getProduct0 (second, first) = \arg => second(first(arg))
+    getProduct0 (second, first) = second . first
 
 PlainFunctorClassic0Monoid : Classic0MonoidRecord
 PlainFunctorClassic0Monoid = mkClassic0Monoid {carrier = PlainFunctor}
