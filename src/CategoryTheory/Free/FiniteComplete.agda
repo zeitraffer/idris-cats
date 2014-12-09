@@ -256,7 +256,7 @@ mutual
         (IdMor o)
 
       -- equalizer acts as congruence
-      EqualizerEqu : 
+      _EqualizerEqu_ : 
           {a a' b b' : Ob} ->
           {f g : a ~> b} -> {f' g' : a' ~> b'} ->
           {ma ma' : a ~> a'} -> {mb mb' : b ~> b'} ->
