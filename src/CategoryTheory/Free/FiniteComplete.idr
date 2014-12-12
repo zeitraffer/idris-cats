@@ -4,6 +4,10 @@ infix 5 ->>, ~>, =~=
 
 {-
 
+TerminalFun = ConstFun InitialCat
+DiagonalFun = ConstFun (TerminalCat + TerminalCat)
+ConstParallelFun = ConstFun (...)
+
 data FreeFCCat : CatRec -> CatRec where
   Pure : cat ~> FreeFCCat cat
   Terminal : RightAdjFun (TerminalFun (FreeFCCat cat))
