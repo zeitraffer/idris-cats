@@ -1,4 +1,4 @@
-idris-categories
+idris-cats
 ================
 
 some category theory in Idris language
